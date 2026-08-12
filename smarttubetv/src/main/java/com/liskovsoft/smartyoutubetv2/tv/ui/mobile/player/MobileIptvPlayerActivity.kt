@@ -441,7 +441,6 @@ class MobileIptvPlayerActivity : AppCompatActivity(), IptvMedia3Player.PlayerLis
             txtNavList.text = "Danh sách"
             txtNavSchedule.text = "Mô tả"
             iconNavSchedule.setImageResource(R.drawable.ic_about)
-            btnNavFullscreen.visibility = View.GONE
         }
 
         btnNavList.setOnClickListener { showChannelsTab() }
@@ -653,7 +652,7 @@ class MobileIptvPlayerActivity : AppCompatActivity(), IptvMedia3Player.PlayerLis
 
             val params = playerVideoContainer.layoutParams as androidx.constraintlayout.widget.ConstraintLayout.LayoutParams
             params.height = 0
-            params.dimensionRatio = if (isVerticalVideo) "9:16" else "16:9"
+            params.dimensionRatio = "16:9"
             playerVideoContainer.layoutParams = params
         }
     }
@@ -2018,12 +2017,7 @@ class MobileIptvPlayerActivity : AppCompatActivity(), IptvMedia3Player.PlayerLis
     override fun onVideoFormatChanged(width: Int, height: Int, frameRate: Float, bitrate: Int) {
         runOnUiThread {
             isVerticalVideo = height > width && width > 0
-            if (!isFullscreen) {
-                // Adjust mini-player ratio based on video orientation
-                val params = playerVideoContainer.layoutParams as androidx.constraintlayout.widget.ConstraintLayout.LayoutParams
-                params.dimensionRatio = if (isVerticalVideo) "9:16" else "16:9"
-                playerVideoContainer.layoutParams = params
-            } else {
+            if (isFullscreen) {
                 // If already in fullscreen, ensure the orientation matches
                 requestedOrientation = if (isVerticalVideo) {
                     ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
