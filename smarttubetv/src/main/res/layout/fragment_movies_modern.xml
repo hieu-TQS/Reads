@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF000000"
+    android:descendantFocusability="afterDescendants">
+
+    <!-- Ảnh nền Immersive động -->
+    <ImageView
+        android:id="@+id/movies_backdrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:alpha="0.9"
+        android:src="@drawable/ic_movie_placeholder" />
+
+    <!-- Lớp phủ Gradient mờ -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/movies_immersive_gradient" />
+
+    <!-- Grid chính chứa Banner và các Row phim -->
+    <androidx.leanback.widget.VerticalGridView
+        android:id="@+id/movies_main_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingTop="16dp"
+        android:paddingBottom="40dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:defaultFocusHighlightEnabled="false"
+        android:descendantFocusability="afterDescendants" />
+
+    <!-- Kết quả tìm kiếm (phủ toàn màn hình) -->
+    <FrameLayout
+        android:id="@+id/movies_search_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:descendantFocusability="afterDescendants">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- Thanh search: back + input -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:orientation="horizontal"
+                android:background="#CC000000"
+                android:descendantFocusability="afterDescendants">
+
+                <FrameLayout
+                    android:id="@+id/btn_search_back"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/ic_search_circle_bg"
+                    android:focusable="true"
+                    android:clickable="true">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:src="@android:drawable/ic_menu_revert"
+                        android:duplicateParentState="true"
+                        app:tint="#FFFFFF" />
+                </FrameLayout>
+
+                <EditText
+                    android:id="@+id/movies_search_input"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/search_input_bg"
+                    android:hint="Nhập tên phim cần tìm..."
+                    android:textColorHint="#888888"
+                    android:textColor="#FFFFFF"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textSize="16sp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true" />
+            </LinearLayout>
+
+            <!-- Kết quả tìm kiếm -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <ProgressBar
+                    android:id="@+id/movies_search_loading"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:indeterminateTint="#FFC107"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/movies_search_empty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Không tìm thấy kết quả"
+                    android:textColor="#888888"
+                    android:textSize="18sp"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/movies_search_results_grid"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:paddingStart="48dp"
+                    android:paddingEnd="48dp"
+                    android:paddingBottom="40dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:descendantFocusability="afterDescendants" />
+            </FrameLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- Trình duyệt thể loại (phủ toàn màn hình) -->
+    <FrameLayout
+        android:id="@+id/movies_category_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FF000000"
+        android:visibility="gone"
+        android:descendantFocusability="afterDescendants">
+
+        <!-- Nền động của thể loại -->
+        <ImageView
+            android:id="@+id/category_backdrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:alpha="0.3"
+            android:src="@drawable/ic_movie_placeholder" />
+
+        <!-- Gradient phủ mờ từ dưới lên -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/movies_immersive_gradient" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- Thanh trên chứa Title, Back button và Filter comboboxes (Tổng height: 52dp + 44dp = 96dp) -->
+            <LinearLayout
+                android:id="@+id/category_header_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#CC000000"
+                android:elevation="8dp">
+
+                <!-- Row 1: Back button + Title + Combobox filters -->
+                <LinearLayout
+                    android:id="@+id/category_top_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:orientation="horizontal"
+                    android:descendantFocusability="afterDescendants">
+
+                    <FrameLayout
+                        android:id="@+id/btn_category_back"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/ic_search_circle_bg"
+                        android:focusable="true"
+                        android:clickable="true">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:src="@android:drawable/ic_menu_revert"
+                            android:duplicateParentState="true"
+                            app:tint="#FFFFFF" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/category_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <!-- Hàng filter ngang (combobox) -->
+                    <androidx.leanback.widget.HorizontalGridView
+                        android:id="@+id/category_filter_chips_grid"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="44dp"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:focusable="true"
+                        android:defaultFocusHighlightEnabled="false"
+                        android:descendantFocusability="afterDescendants" />
+                </LinearLayout>
+
+                <!-- Row 2: Hàng thể loại ngang sát hàng 1 -->
+                <androidx.leanback.widget.HorizontalGridView
+                    android:id="@+id/category_chips_grid"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:paddingStart="48dp"
+                    android:paddingEnd="48dp"
+                    android:focusable="true"
+                    android:defaultFocusHighlightEnabled="false"
+                    android:descendantFocusability="afterDescendants" />
+            </LinearLayout>
+
+            <!-- Grid phim 5 cột (chiếm phần màn hình còn lại) -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:clipChildren="true"
+                android:clipToPadding="false">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/category_movies_grid"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:clipChildren="false"
+                    android:paddingStart="48dp"
+                    android:paddingEnd="48dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="40dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:descendantFocusability="afterDescendants" />
+
+                <ProgressBar
+                    android:id="@+id/category_loading"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:indeterminateTint="#FFC107"
+                    android:visibility="gone" />
+            </FrameLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- Loading toàn màn hình -->
+    <ProgressBar
+        android:id="@+id/movies_loading_progress"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:indeterminateTint="#FFC107"
+        android:visibility="gone" />
+
+</FrameLayout>
