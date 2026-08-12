@@ -1,38 +1,41 @@
-# Implementation Plan - In-place Search for Dailymotion
+# Implementation Plan - YouTube Tab Header Customization
 
-Change the search behavior in the Dailymotion tab to perform searching directly within the search bar on the screen, instead of showing a separate overlay.
+Customize the YouTube (SmartTube) tab header to have a fixed long search bar and a login button aligned horizontally, matching the "Stream" tab style.
 
 ## User Review Required
 
 > [!IMPORTANT]
-> The `SearchBar` widget from Leanback will be moved from a hidden overlay directly into the main fragment layout. This will make it permanently visible (or visible when focused at the top) and eliminate the "overlay" feel.
+> This change will affect all fragments using the Leanback `TitleView` with the `lb_title_view.xml` layout, primarily the YouTube tab. Other tabs like Stream/Movies use custom headers and won't be affected.
 
 ## Proposed Changes
 
-### Dailymotion UI
+### UI Customization
 
-#### [fragment_dailymotion_browse.xml](file:///E:/SuperOK/smarttubetv/src/main/res/layout/fragment_dailymotion_browse.xml)
+#### [lb_title_view.xml](file:///E:/SuperOK/smarttubetv/src/main/res/layout/lb_title_view.xml)
 
-- Remove `dailymotion_search_bar_row` (the static search bar placeholder).
-- Move `search_bar` from `dailymotion_search_overlay` into the main `dailymotion_main_content` layout.
-- Remove `dailymotion_search_overlay`.
-- Adjust `search_bar` layout parameters to match the previous placeholder's position.
+- Replace the root `FrameLayout` with a horizontal `LinearLayout` to align items horizontally.
+- Set `search_bar_container` to `width="0dp"` and `weight="1"` to make it stretch.
+- Change `title_orb` from `SearchOrbView` to a plain `ImageView` (24dp) to remove the circular orb background.
+- Move `account_orb` (login button), `language_orb`, `exit_pip`, and `pip_title` directly into the horizontal `LinearLayout`.
+- Set `android:addStatesFromChildren="true"` on `search_bar_container` so its background reflects the `search_input` focus.
 
-#### [DailymotionBrowseFragment.java](file:///E:/SuperOK/smarttubetv/src/main/java/com/liskovsoft/smartyoutubetv2/tv/ui/dailymotion/DailymotionBrowseFragment.java)
+#### [NavigateTitleView.java](file:///E:/SuperOK/smarttubetv/src/main/java/com/liskovsoft/smartyoutubetv2/tv/ui/widgets/browse/NavigateTitleView.java)
 
-- Remove references to `mSearchOverlay` and `mSearchBarRow`.
-- Simplify `onViewCreated` to initialize `mSearchBar` directly in the main layout.
-- Remove `showSearch()` and `hideSearch()` methods.
-- Update `performSearch()` to remove the `hideSearch()` call.
-- Update focus management logic (DPAD_UP from grid) to focus directly on `mSearchBar`.
-- Ensure the `SearchBar` is properly initialized with a `SpeechRecognizer` and listener.
+- Update `mSearchOrbView` type to `View` (or keep it and handle it as `ImageView` if changed).
+- In `updateComponentsVisibility`, adjust visibility logic for the new horizontal layout.
+- Ensure `account_orb` is correctly initialized and managed.
+
+#### [BrowseFragment.java](file:///E:/SuperOK/smarttubetv/src/main/java/com/liskovsoft/smartyoutubetv2/tv/ui/browse/BrowseFragment.java)
+
+- In `setupUi()`, remove `setSearchAffordanceColor(ContextCompat.getColor(getContext(), brandAccentColorRes))` to prevent the search bar from turning red.
+- Ensure `setTitleView(null)` or similar is NOT called, so the custom title remains visible.
 
 ## Verification Plan
 
 ### Manual Verification
-- Navigate to the Dailymotion tab.
-- Verify that the search bar is visible at the top.
-- Click on the search bar (or focus it and press OK) and verify that it allows typing directly without a full-screen overlay appearing.
-- Perform a search and verify that results are loaded in the grid below.
-- Test voice search via the speech orb.
-- Test navigation between the search bar and the video grid using DPAD UP/DOWN.
+- Navigate to the **YouTube** tab.
+- Verify that the search bar is long and stretches across the top.
+- Verify that the **Login/Account** button is to the right of the search bar, on the same line.
+- Verify that the **red background** is gone from the search icon.
+- Open the **left sidebar** and verify that the header moves/pushes to the right consistently with the content cards below.
+- Test **D-pad navigation** between the search bar and the login button.

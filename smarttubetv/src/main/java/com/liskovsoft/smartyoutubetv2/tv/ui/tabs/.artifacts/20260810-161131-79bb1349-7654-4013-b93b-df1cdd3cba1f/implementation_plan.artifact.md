@@ -1,6 +1,6 @@
-# Implementation Plan - Fix Focus Loss after Playback in Tab Navigation
+# Implementation Plan - Fix Tab Selection Regression
 
-Fix the issue where focus jumps to the YouTube tab instead of staying on the current tab when returning from playback in `TabNavigationActivity`.
+Fix the issue where content becomes blank and focus jumps to the first tab when repeatedly selecting a tab in `TabNavigationActivity`.
 
 ## Proposed Changes
 
@@ -8,14 +8,14 @@ Fix the issue where focus jumps to the YouTube tab instead of staying on the cur
 
 #### [TabNavigationActivity.java](file:///E:/SuperOK/smarttubetv/src/main/java/com/liskovsoft/smartyoutubetv2/tv/ui/tabs/TabNavigationActivity.java)
 
-- In `onResume()`, ensure that `BrowsePresenter` is "set up" to believe that `TabNavigationActivity` is already the current view, to prevent it from trying to `startView(BrowseView.class)` which might trigger a tab switch.
-- Enhance the focus restoration logic to specifically check if the selected tab is still valid and re-select it visually if needed.
-- Add a check to prevent `onNewIntent` or `onResume` from triggering a tab switch unless explicitly requested.
+- Correct the fragment hiding loop in `selectTab()` to compare the tab index (key) instead of the loop counter.
+- Add a guard to skip visual and fragment updates if the tab is already selected, except for explicit requests (like `onNewIntent`).
 
 ## Verification Plan
 
 ### Manual Verification
-- Navigate to the "Dailymotion" or "Phim" tab.
-- Start a video playback (using `IptvPlayerActivity` or similar).
-- Press the **BACK** button to exit playback.
-- Verify that the app returns to the same tab (Dailymotion/Phim) and focus is correctly placed on the content, not jumping to the YouTube tab.
+- Navigate to the **Dailymotion** tab.
+- Press **OK** multiple times on the "Dailymotion" tab icon.
+- Verify that the content remains visible and focus stays on the tab (or moves to content if intended, but definitely doesn't jump to "Stream").
+- Repeat for other tabs like **Videos** and **Settings**.
+- Verify that switching between different tabs still works correctly.

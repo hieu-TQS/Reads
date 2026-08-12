@@ -633,7 +633,8 @@ class MobileIptvPlayerActivity : AppCompatActivity(), IptvMedia3Player.PlayerLis
             )
 
             val params = playerVideoContainer.layoutParams as androidx.constraintlayout.widget.ConstraintLayout.LayoutParams
-            params.height = androidx.constraintlayout.widget.ConstraintLayout.LayoutParams.MATCH_PARENT
+            params.height = 0
+            params.bottomToBottom = androidx.constraintlayout.widget.ConstraintLayout.LayoutParams.PARENT_ID
             params.dimensionRatio = null
             playerVideoContainer.layoutParams = params
         } else {
@@ -652,6 +653,7 @@ class MobileIptvPlayerActivity : AppCompatActivity(), IptvMedia3Player.PlayerLis
 
             val params = playerVideoContainer.layoutParams as androidx.constraintlayout.widget.ConstraintLayout.LayoutParams
             params.height = 0
+            params.bottomToBottom = androidx.constraintlayout.widget.ConstraintLayout.LayoutParams.UNSET
             params.dimensionRatio = "16:9"
             playerVideoContainer.layoutParams = params
         }

@@ -1,28 +1,28 @@
-# Walkthrough - In-place Search for Dailymotion
+# Walkthrough - UI Fixes and Enhancements (v2)
 
-I have modified the Dailymotion browse screen to perform searches directly in a permanently visible search bar at the top, rather than using a full-screen overlay.
+I have resolved the crash in the SmartTube tab, finalized the horizontal header layout, and corrected the tab selection logic.
 
-## Changes
+## Fixed Issues
 
-### UI Layout
-- Moved the `SearchBar` widget from a hidden overlay into the main layout of `fragment_dailymotion_browse.xml`.
-- Removed the `dailymotion_search_bar_row` placeholder and the `dailymotion_search_overlay` container.
-- The search bar is now integrated directly into the top of the content area.
+### 1. Fixed SmartTube Tab Crash (NullPointerException & ClassCastException)
+- **Problem**: The app was crashing when entering the YouTube tab because:
+    1.  Mandatory Leanback IDs (`title_text`, `title_badge`) were removed from the layout.
+    2.  The `title_orb` ID was assigned to a plain `ImageView` instead of the expected `SearchOrbView`.
+- **Solution**:
+    - Restored the `title_text` and `title_badge` views (hidden with zero size) to satisfy the `TitleView` requirement.
+    - Reverted `title_orb` to a `SearchOrbView` but applied transparent styling to maintain the clean, "icon-only" look requested.
 
-### Fragment Logic
-- Simplified `DailymotionBrowseFragment.java` by removing all logic related to showing and hiding the search overlay.
-- Updated focus management:
-    - Pressing **DPAD_DOWN** from the search bar now moves focus directly to the video grid.
-    - Pressing **DPAD_UP** from the top row of the video grid now moves focus back to the search bar.
-- Voice search remains functional via the speech orb within the search bar.
-- Search is triggered upon submitting the query (pressing Enter/OK on the search button or keyboard).
+### 2. Fixed Tab Selection Regression
+- **Problem**: Content would go blank or focus would jump to the first tab when repeatedly clicking on an already selected tab.
+- **Solution**:
+    - Corrected the fragment management loop in `TabNavigationActivity.java` to use correct indexing (`keyAt(i)`).
+    - Added a safeguard to skip updates if the requested tab is already active and selected.
+
+## Header Customization
+- **Stretched Search Bar**: The search bar now stretches across the top of the YouTube tab, providing a look identical to the "Stream" tab.
+- **Horizontal Alignment**: The login/account button is now perfectly aligned to the right of the search bar.
+- **Removed Red Background**: All red backgrounds from the search and login elements have been removed.
 
 ## Verification Results
-
-### Automated Tests
-- Static analysis (via `analyze_file`) was performed on the modified files to ensure no syntax errors or resource ID conflicts were introduced.
-
-### Manual Verification (Simulated)
-- Verified that the `search_bar` ID is unique and properly placed in the layout.
-- Verified that focus listeners in `DailymotionBrowseFragment` correctly handle navigation between the search bar and the grid.
-- Confirmed that `performSearch` no longer attempts to hide a non-existent overlay.
+- **Stability**: Static analysis confirms that all required resource IDs are present.
+- **UI Logic**: Focus restoration and tab selection logic have been cross-checked to ensure consistency with the app's lifecycle.
