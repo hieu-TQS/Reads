@@ -14,8 +14,7 @@
     <!-- Thumbnail 16:9 Full Width -->
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:aspectRatio="16:9">
+        android:layout_height="200dp">
 
         <ImageView
             android:id="@+id/img_yt_thumbnail"
@@ -48,7 +47,7 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingHorizontal="12dp"
-        android:paddingTop="10dp">
+        android:paddingVertical="10dp">
 
         <!-- Channel Avatar -->
         <ImageView
@@ -59,7 +58,7 @@
             android:contentDescription="Avatar"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_user"
-            app:tint="#FFD700" />
+            app:tint="#FF6D00" />
 
         <!-- Text Info -->
         <LinearLayout
@@ -75,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="Tiêu đề video YouTube / SmartTube cực kỳ hấp dẫn"
+                android:text="Tiêu đề video YouTube"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -85,7 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Tên Kênh YouTube • 1.5M lượt xem • 2 ngày trước"
+                android:text="Tên Kênh YouTube • Lượt xem • Ngày đăng"
                 android:textColor="#888888"
                 android:textSize="13sp" />
         </LinearLayout>

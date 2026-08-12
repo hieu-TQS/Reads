@@ -29,6 +29,7 @@ import com.liskovsoft.smartyoutubetv2.common.misc.MediaServiceManager
 import com.liskovsoft.smartyoutubetv2.common.prefs.BlockedChannelData
 import com.liskovsoft.smartyoutubetv2.tv.R
 import com.liskovsoft.smartyoutubetv2.tv.ui.mobile.player.MobilePlayerActivity
+import com.liskovsoft.smartyoutubetv2.tv.ui.mobile.player.MobileYouTubeSearchActivity
 import com.liskovsoft.youtubeapi.service.YouTubeServiceManager
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -101,9 +102,8 @@ class MobileYouTubeFragment : Fragment() {
         imgProfile = view.findViewById(R.id.img_yt_profile)
 
         btnSearch.setOnClickListener {
-            context?.let { ctx ->
-                SearchPresenter.instance(ctx).startSearch(null)
-            }
+            val intent = Intent(context, MobileYouTubeSearchActivity::class.java)
+            startActivity(intent)
         }
 
         btnCast.setOnClickListener {
@@ -126,19 +126,8 @@ class MobileYouTubeFragment : Fragment() {
             null
         }
 
-        val avatarUrl = account?.avatarImageUrl
-        if (!avatarUrl.isNullOrEmpty()) {
-            imgProfile.clearColorFilter()
-            Glide.with(this)
-                .load(avatarUrl)
-                .circleCrop()
-                .placeholder(R.drawable.ic_user)
-                .error(R.drawable.ic_user)
-                .into(imgProfile)
-        } else {
-            imgProfile.setImageResource(R.drawable.ic_user)
-            imgProfile.setColorFilter(Color.parseColor("#FF6D00"))
-        }
+        imgProfile.setImageResource(R.drawable.ic_user)
+        imgProfile.setColorFilter(Color.parseColor("#FF6D00"))
     }
 
     private fun setupCategories() {
@@ -407,6 +396,7 @@ class MobileYouTubeFragment : Fragment() {
             }
 
             holder.imgAvatar.setImageResource(R.drawable.ic_user)
+            holder.imgAvatar.setColorFilter(Color.parseColor("#FF6D00"))
 
             holder.imgAvatar.setOnClickListener { onChannelClick(video) }
             holder.itemView.setOnClickListener { onClick(video) }
