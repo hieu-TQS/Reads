@@ -224,7 +224,17 @@ function mtrParseChapters(html) {
 }
 
 function parseNovelChapters(html) {
-    return JSON.stringify(mtrParseChapters(html));
+    var s = String(html == null ? "" : html);
+    // Bỏ khối "Chương mới nhất" ở đầu trang để không lặp chương
+    var start = s.indexOf("Danh s\u00e1ch ch\u01b0\u01a1ng");
+    if (start >= 0) s = s.substring(start);
+    return JSON.stringify(mtrParseChapters(s));
+}
+
+/** Số trang trong URL mục lục (`?page=3`). */
+function mtrPageNumber(url) {
+    var m = /[?&]page=(\d+)/.exec(String(url == null ? "" : url));
+    return m ? parseInt(m[1], 10) : 0;
 }
 
 function parseNovelDetail(html, url) {
@@ -281,6 +291,9 @@ function parseNovelDetail(html, url) {
         pageSeen[pageUrl] = 1;
         pages.push(pageUrl);
     }
+    pages.sort(function (a, b) {
+        return mtrPageNumber(a) - mtrPageNumber(b);
+    });
 
     return JSON.stringify({
         title: title,
