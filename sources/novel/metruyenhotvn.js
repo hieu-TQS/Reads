@@ -82,7 +82,7 @@ function mtrAbsolute(url) {
     return MTR_HOST + "/" + u;
 }
 
-/** Số chương trong URL (`/slug/chuong-123/`). */
+/** Số chương trong URL (/slug/chuong-123/). */
 function mtrChapterNumber(url) {
     var m = /(?:chuong|chapter)-(\d+)/i.exec(String(url == null ? "" : url));
     return m ? parseInt(m[1], 10) : 0;
