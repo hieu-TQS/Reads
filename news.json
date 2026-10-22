@@ -67,6 +67,15 @@
       "description": "Tin tức 24h bản mobile: chuyên mục, tải thêm AJAX và đọc bài."
     },
     {
+      "id": "baomoi",
+      "name": "Báo Mới",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/baomoi.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=baomoi.com&sz=64",
+      "author": "hieu-TQS",
+      "description": "Báo Mới: tổng hợp tin, chuyên mục, tìm kiếm và đọc bài kèm video."
+    },
+    {
       "id": "khoahoctv",
       "name": "KhoaHoc.tv",
       "version": "1.0.0",
