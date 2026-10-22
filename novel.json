@@ -2,5 +2,15 @@
   "schema": 1,
   "name": "Nguồn truyện chữ",
   "updated": "2026-10-22",
-  "sources": []
+  "sources": [
+    {
+      "id": "metruyenhotvn",
+      "name": "Mê Truyện Hot",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/novel/metruyenhotvn.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=metruyenhotvn.com&sz=64",
+      "author": "hieu-TQS",
+      "description": "Truyện chữ Mê Truyện Hot: danh sách mới cập nhật, tìm kiếm, mục lục chia trang và đọc chương."
+    }
+  ]
 }
