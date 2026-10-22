@@ -378,7 +378,7 @@ function parseNovelChapter(html, url) {
     if (paragraphs.length === 0) {
         var start = s.indexOf("chapter-c");
         if (start >= 0) {
-            var block = s.substring(start, start + 200000);
+            var block = s.substring(start, start + 300000);
             var end = block.indexOf("content-metruyenhot");
             if (end > 0) block = block.substring(0, end);
             var pre = /<p[^>]*>([\s\S]*?)<\/p>/gi;
@@ -386,6 +386,18 @@ function parseNovelChapter(html, url) {
             while ((pm = pre.exec(block)) !== null) {
                 var t = mtrText(pm[1]);
                 if (t) paragraphs.push(t);
+            }
+            // Một số chương đặt nội dung trực tiếp trong <div class="chapter-c">
+            // với <br> ngăn đoạn (không có <p>) → tách theo xuống dòng.
+            if (paragraphs.length === 0) {
+                var openEnd = block.indexOf(">");
+                if (openEnd >= 0) block = block.substring(openEnd + 1);
+                var raw = mtrText(block);
+                var parts = raw.split(/\n+/);
+                for (var i = 0; i < parts.length; i++) {
+                    var tt = mtrTrim(parts[i]);
+                    if (tt) paragraphs.push(tt);
+                }
             }
         }
     }
