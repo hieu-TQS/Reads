@@ -11,6 +11,15 @@
       "iconUrl": "https://www.google.com/s2/favicons?domain=truyenqqko.com&sz=64",
       "author": "hieu-TQS",
       "description": "Truyện tranh TruyenQQ: danh sách mới cập nhật, danh mục thể loại, tìm kiếm, đọc chương dạng ảnh."
+    },
+    {
+      "id": "misskon",
+      "name": "MissKon",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/comic/misskon.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=misskon.com&sz=64",
+      "author": "hieu-TQS",
+      "description": "MissKon: bộ sưu tập ảnh cosplay/model chất lượng cao, phân trang và xem ảnh."
     }
   ]
 }
