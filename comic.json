@@ -20,6 +20,15 @@
       "iconUrl": "https://www.google.com/s2/favicons?domain=misskon.com&sz=64",
       "author": "hieu-TQS",
       "description": "MissKon: bộ sưu tập ảnh cosplay/model chất lượng cao, phân trang và xem ảnh."
+    },
+    {
+      "id": "cosblay",
+      "name": "Cosblay",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/comic/cosblay.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=vn.cosblay.com&sz=64",
+      "author": "hieu-TQS",
+      "description": "Cosblay: bộ sưu tập ảnh cosplay chất lượng cao, phân trang và xem ảnh."
     }
   ]
 }
