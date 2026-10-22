@@ -83,6 +83,24 @@
       "iconUrl": "https://www.google.com/s2/favicons?domain=khoahoc.tv&sz=64",
       "author": "hieu-TQS",
       "description": "KhoaHoc.tv: tin khoa học - công nghệ, chuyên mục, tìm kiếm và đọc bài đầy đủ."
+    },
+    {
+      "id": "tinhayvip",
+      "name": "Tin Hay VIP",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/tinhayvip.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=tinhayvip.com&sz=64",
+      "author": "hieu-TQS",
+      "description": "Tin Hay VIP: tổng hợp tin nóng, gái xinh, JAV, game/phim 18+ (nguồn 18+)."
+    },
+    {
+      "id": "vietnamnet",
+      "name": "VietNamNet",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/vietnamnet.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=vietnamnet.vn&sz=64",
+      "author": "hieu-TQS",
+      "description": "VietNamNet: thời sự, kinh doanh, giáo dục, thế giới, đời sống, công nghệ, thể thao, tìm kiếm và đọc bài."
     }
   ]
 }
