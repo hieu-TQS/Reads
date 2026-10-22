@@ -2,5 +2,15 @@
   "schema": 1,
   "name": "Nguồn truyện tranh",
   "updated": "2026-10-22",
-  "sources": []
+  "sources": [
+    {
+      "id": "truyenqq",
+      "name": "TruyenQQ",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/comic/truyenqq.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=truyenqqko.com&sz=64",
+      "author": "hieu-TQS",
+      "description": "Truyện tranh TruyenQQ: danh sách mới cập nhật, tìm kiếm, đọc chương dạng ảnh."
+    }
+  ]
 }
