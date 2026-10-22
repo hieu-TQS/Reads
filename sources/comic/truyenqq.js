@@ -65,6 +65,25 @@ function firstMatch(s, re) {
     return m ? m : null;
 }
 
+/* Số chương trong URL (-chap-12 / -chuong-12). trả 0 nếu không có. */
+function chapNumber(url) {
+    var m = /(?:-|^)(?:chap|chuong)-([0-9]+(?:\.[0-9]+)?)/i.exec(String(url || ""));
+    if (!m) return 0;
+    var n = parseFloat(m[1]);
+    return isNaN(n) ? 0 : n;
+}
+
+/* Mục lục truyenqq trả mới nhất trước → sắp tăng dần để đọc từ chương 1. */
+function sortChaptersByNumber(list) {
+    list.sort(function (a, b) {
+        var na = chapNumber(a.link);
+        var nb = chapNumber(b.link);
+        if (na !== nb) return na - nb;
+        return 0;
+    });
+    return list;
+}
+
 function attrOf(tag, name) {
     var m = new RegExp(name + "\\s*=\\s*\"([^\"]*)\"", "i").exec(tag);
     if (!m) m = new RegExp(name + "\\s*=\\s*'([^']*)'", "i").exec(tag);
@@ -242,7 +261,7 @@ function parseComicDetail(html, url) {
         coverUrl: cover,
         author: author,
         description: description,
-        chapters: chapters
+        chapters: sortChaptersByNumber(chapters)
     });
 }
 
@@ -256,6 +275,61 @@ function pickImageUrl(imgTag) {
     if (!u) u = attrOf(imgTag, "src");
     if (!u || u.indexOf("data:") === 0 || u.indexOf("no_image") >= 0) return "";
     return absUrl(u);
+}
+
+/*
+ * TruyenQQ gắn class "go-btn prev" cho CẢ nút "Chap trước" lẫn "Chap sau"
+ * (lỗi markup của site) nên không thể tin class. Quy ước của app:
+ *  - prevLink = chương có số nhỏ hơn gần nhất
+ *  - nextLink = chương có số lớn hơn gần nhất
+ */
+function parseChapterNav(html, url) {
+    var current = chapNumber(url);
+    var prev = "";
+    var next = "";
+    var prevNum = 0;
+    var nextNum = 0;
+    var seen = {};
+
+    if (current > 0) {
+        var re = /<a\b([^>]*\bgo-btn\b[^>]*)>([\s\S]*?)<\/a>/gi;
+        var m;
+        while ((m = re.exec(html)) !== null) {
+            var href = attrOf("<a " + m[1] + ">", "href");
+            if (!href) continue;
+            var link = absUrl(href);
+            if (!link || seen[link]) continue;
+            seen[link] = true;
+            var num = chapNumber(link);
+            if (!num || num === current) continue;
+            if (num < current) {
+                if (!prev || num > prevNum) { prev = link; prevNum = num; }
+            } else if (!next || num < nextNum) {
+                next = link;
+                nextNum = num;
+            }
+        }
+        return { prevLink: prev, nextLink: next };
+    }
+
+    /* URL không có số chương: dùng class + nhãn chữ như trước. */
+    var anchors = collectAnchors(html);
+    for (var i = 0; i < anchors.length; i++) {
+        var attrs = anchors[i].attrs || "";
+        if (attrs.indexOf("go-btn") < 0) continue;
+        var rawHref = attrOf("<a " + attrs + ">", "href");
+        if (!rawHref) continue;
+        var abs = absUrl(rawHref);
+        if (!abs || seen[abs]) continue;
+        seen[abs] = true;
+        var text = cleanText(anchors[i].text);
+        if (/\bprev\b/i.test(attrs) || /tr\u01b0\u1edbc/i.test(text)) {
+            if (!prev) prev = abs;
+        } else if (!next) {
+            next = abs;
+        }
+    }
+    return { prevLink: prev, nextLink: next };
 }
 
 function parseComicChapter(html, url) {
@@ -277,18 +351,13 @@ function parseComicChapter(html, url) {
         imageUrls.push(u);
     }
 
-    var prevLink = "";
-    var nextLink = "";
-    var prevA = firstMatch(html, /<a\b([^>]*\bgo-btn\s+prev\b[^>]*)>/i);
-    if (prevA) prevLink = absUrl(attrOf("<a " + prevA[1] + ">", "href"));
-    var nextA = firstMatch(html, /<a\b([^>]*\bgo-btn\s+next\b[^>]*)>/i);
-    if (nextA) nextLink = absUrl(attrOf("<a " + nextA[1] + ">", "href"));
+    var nav = parseChapterNav(html, url);
 
     return JSON.stringify({
         title: title,
         imageUrls: imageUrls,
-        prevLink: prevLink,
-        nextLink: nextLink
+        prevLink: nav.prevLink,
+        nextLink: nav.nextLink
     });
 }
 
