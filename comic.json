@@ -29,6 +29,15 @@
       "iconUrl": "https://www.google.com/s2/favicons?domain=vn.cosblay.com&sz=64",
       "author": "hieu-TQS",
       "description": "Cosblay: bộ sưu tập ảnh cosplay chất lượng cao, phân trang và xem ảnh."
+    },
+    {
+      "id": "buondua",
+      "name": "BuonDua",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/comic/buondua.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=buondua.com&sz=64",
+      "author": "hieu-TQS",
+      "description": "BuonDua: bộ sưu tập ảnh chất lượng cao, phân trang và xem ảnh."
     }
   ]
 }
