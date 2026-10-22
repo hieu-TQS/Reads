@@ -6,11 +6,11 @@
     {
       "id": "truyenqq",
       "name": "TruyenQQ",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/comic/truyenqq.js",
       "iconUrl": "https://www.google.com/s2/favicons?domain=truyenqqko.com&sz=64",
       "author": "hieu-TQS",
-      "description": "Truyện tranh TruyenQQ: danh sách mới cập nhật, tìm kiếm, đọc chương dạng ảnh."
+      "description": "Truyện tranh TruyenQQ: danh sách mới cập nhật, danh mục thể loại, tìm kiếm, đọc chương dạng ảnh."
     }
   ]
 }
