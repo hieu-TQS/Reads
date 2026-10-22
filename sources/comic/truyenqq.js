@@ -10,6 +10,7 @@
  *  - parseComicDetail(html, url)            -> { title, coverUrl, author, description, chapters:[{title,link}] }
  *  - parseComicChapter(html, url)           -> { title, imageUrls:[...], prevLink, nextLink }
  *  - getComicHeaders(url)                   -> { Referer: "..." }
+ *  - getComicCategories()                   -> [{ title, url }]  danh mục (thể loại)
  */
 
 var QQ_BASE = "https://truyenqqko.com";
@@ -367,4 +368,57 @@ function getComicHeaders(url) {
         "Referer": QQ_BASE + "/",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/*,*/*;q=0.8"
     });
+}
+
+/* Danh mục (thể loại) cho hàng chip ở màn chính. Trang thể loại dùng lại
+   parse danh sách + phân trang sẵn có nên không cần hàm riêng. */
+function getComicCategories() {
+    return JSON.stringify([
+        { title: "Action", url: QQ_BASE + "/the-loai/action-26" },
+        { title: "Adventure", url: QQ_BASE + "/the-loai/adventure-27" },
+        { title: "Anime", url: QQ_BASE + "/the-loai/anime-62" },
+        { title: "Chuyển Sinh", url: QQ_BASE + "/the-loai/chuyen-sinh-91" },
+        { title: "Cổ Đại", url: QQ_BASE + "/the-loai/co-dai-90" },
+        { title: "Comedy", url: QQ_BASE + "/the-loai/comedy-28" },
+        { title: "Comic", url: QQ_BASE + "/the-loai/comic-60" },
+        { title: "Demons", url: QQ_BASE + "/the-loai/demons-99" },
+        { title: "Detective", url: QQ_BASE + "/the-loai/detective-100" },
+        { title: "Doujinshi", url: QQ_BASE + "/the-loai/doujinshi-96" },
+        { title: "Drama", url: QQ_BASE + "/the-loai/drama-29" },
+        { title: "Fantasy", url: QQ_BASE + "/the-loai/fantasy-30" },
+        { title: "Gender Bender", url: QQ_BASE + "/the-loai/gender-bender-45" },
+        { title: "Harem", url: QQ_BASE + "/the-loai/harem-47" },
+        { title: "Historical", url: QQ_BASE + "/the-loai/historical-51" },
+        { title: "Horror", url: QQ_BASE + "/the-loai/horror-44" },
+        { title: "Huyền Huyễn", url: QQ_BASE + "/the-loai/huyen-huyen-468" },
+        { title: "Isekai", url: QQ_BASE + "/the-loai/isekai-85" },
+        { title: "Josei", url: QQ_BASE + "/the-loai/josei-54" },
+        { title: "Mafia", url: QQ_BASE + "/the-loai/mafia-69" },
+        { title: "Magic", url: QQ_BASE + "/the-loai/magic-58" },
+        { title: "Manga", url: QQ_BASE + "/the-loai/manga-469" },
+        { title: "Manhua", url: QQ_BASE + "/the-loai/manhua-35" },
+        { title: "Manhwa", url: QQ_BASE + "/the-loai/manhwa-49" },
+        { title: "Martial Arts", url: QQ_BASE + "/the-loai/martial-arts-41" },
+        { title: "Military", url: QQ_BASE + "/the-loai/military-101" },
+        { title: "Mystery", url: QQ_BASE + "/the-loai/mystery-39" },
+        { title: "Ngôn Tình", url: QQ_BASE + "/the-loai/ngon-tinh-87" },
+        { title: "One shot", url: QQ_BASE + "/the-loai/one-shot-95" },
+        { title: "Psychological", url: QQ_BASE + "/the-loai/psychological-40" },
+        { title: "Romance", url: QQ_BASE + "/the-loai/romance-36" },
+        { title: "School Life", url: QQ_BASE + "/the-loai/school-life-37" },
+        { title: "Sci-fi", url: QQ_BASE + "/the-loai/sci-fi-43" },
+        { title: "Seinen", url: QQ_BASE + "/the-loai/seinen-42" },
+        { title: "Shoujo", url: QQ_BASE + "/the-loai/shoujo-38" },
+        { title: "Shoujo Ai", url: QQ_BASE + "/the-loai/shoujo-ai-98" },
+        { title: "Shounen", url: QQ_BASE + "/the-loai/shounen-31" },
+        { title: "Shounen Ai", url: QQ_BASE + "/the-loai/shounen-ai-86" },
+        { title: "Slice of life", url: QQ_BASE + "/the-loai/slice-of-life-46" },
+        { title: "Sports", url: QQ_BASE + "/the-loai/sports-57" },
+        { title: "Supernatural", url: QQ_BASE + "/the-loai/supernatural-32" },
+        { title: "Tragedy", url: QQ_BASE + "/the-loai/tragedy-52" },
+        { title: "Trọng Sinh", url: QQ_BASE + "/the-loai/trong-sinh-82" },
+        { title: "Truyện Màu", url: QQ_BASE + "/the-loai/truyen-mau-92" },
+        { title: "Webtoon", url: QQ_BASE + "/the-loai/webtoon-55" },
+        { title: "Xuyên Không", url: QQ_BASE + "/the-loai/xuyen-khong-88" }
+    ]);
 }
