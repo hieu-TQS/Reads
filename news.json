@@ -11,6 +11,69 @@
       "iconUrl": "https://www.google.com/s2/favicons?domain=tienphong.vn&sz=64",
       "author": "hieu-TQS",
       "description": "Tin tức Tiền Phong: chuyên mục, tìm kiếm qua API, đọc bài đầy đủ."
+    },
+    {
+      "id": "kenh14",
+      "name": "Kenh14",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/kenh14.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=kenh14.vn&sz=64",
+      "author": "hieu-TQS",
+      "description": "Kenh14 bản mobile: trang chủ, chuyên mục, tìm kiếm, đọc bài và tin đề xuất."
+    },
+    {
+      "id": "thethao247",
+      "name": "Thể Thao 247",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/thethao247.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=thethao247.vn&sz=64",
+      "author": "hieu-TQS",
+      "description": "Tin thể thao Thể Thao 247: chuyên mục, phân trang và đọc bài."
+    },
+    {
+      "id": "dantri",
+      "name": "Dân Trí",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/dantri.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=dantri.com.vn&sz=64",
+      "author": "hieu-TQS",
+      "description": "Báo Dân Trí: chuyên mục, tìm kiếm, phân trang và đọc bài đầy đủ."
+    },
+    {
+      "id": "genk",
+      "name": "GenK",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/genk.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=genk.vn&sz=64",
+      "author": "hieu-TQS",
+      "description": "GenK: tin công nghệ, chuyên mục, tìm kiếm và đọc bài."
+    },
+    {
+      "id": "vnreview",
+      "name": "VnReview",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/vnreview.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=vnreview.vn&sz=64",
+      "author": "hieu-TQS",
+      "description": "VnReview: đánh giá công nghệ, chuyên mục, tìm kiếm và đọc bài."
+    },
+    {
+      "id": "24h",
+      "name": "24h",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/news24h.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=24h.com.vn&sz=64",
+      "author": "hieu-TQS",
+      "description": "Tin tức 24h bản mobile: chuyên mục, tải thêm AJAX và đọc bài."
+    },
+    {
+      "id": "baomoi",
+      "name": "Báo Mới",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/baomoi.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=baomoi.com&sz=64",
+      "author": "hieu-TQS",
+      "description": "Báo Mới: tổng hợp tin, chuyên mục, tìm kiếm và đọc bài kèm video."
     }
   ]
 }
