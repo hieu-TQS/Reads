@@ -11,6 +11,15 @@
       "iconUrl": "https://www.google.com/s2/favicons?domain=metruyenhotvn.com&sz=64",
       "author": "hieu-TQS",
       "description": "Truyện chữ Mê Truyện Hot: danh sách mới cập nhật, danh mục thể loại, tìm kiếm, mục lục chia trang và đọc chương."
+    },
+    {
+      "id": "truyenfull",
+      "name": "TruyenFull",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/novel/truyenfull.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=truyenfull.live&sz=64",
+      "author": "hieu-TQS",
+      "description": "Truyện chữ TruyenFull: danh sách mới cập nhật, danh mục thể loại, tìm kiếm, mục lục chia trang và đọc chương."
     }
   ]
 }
