@@ -231,7 +231,7 @@ function parseNovelChapters(html) {
     return JSON.stringify(mtrParseChapters(s));
 }
 
-/** Số trang trong URL mục lục (`?page=3`). */
+/** Số trang trong URL mục lục (?page=3). */
 function mtrPageNumber(url) {
     var m = /[?&]page=(\d+)/.exec(String(url == null ? "" : url));
     return m ? parseInt(m[1], 10) : 0;
