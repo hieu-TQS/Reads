@@ -38,17 +38,60 @@ function absUrl(u) {
     return QQ_BASE + "/" + u;
 }
 
+/* Bảng entity HTML (tên → ký tự) — thiếu mã nào là chữ hiện &ldquo; thay vì dấu “ */
+var QQ_ENTITIES = {
+    amp: "&", lt: "<", gt: ">", quot: "\"", apos: "'", nbsp: " ",
+    ldquo: "\u201c", rdquo: "\u201d", lsquo: "\u2018", rsquo: "\u2019",
+    sbquo: "\u201a", bdquo: "\u201e", laquo: "\u00ab", raquo: "\u00bb",
+    hellip: "\u2026", mdash: "\u2014", ndash: "\u2013", minus: "\u2212",
+    bull: "\u2022", middot: "\u00b7", times: "\u00d7", divide: "\u00f7",
+    copy: "\u00a9", reg: "\u00ae", trade: "\u2122", deg: "\u00b0",
+    plusmn: "\u00b1", frac12: "\u00bd", frac14: "\u00bc", frac34: "\u00be",
+    sup2: "\u00b2", sup3: "\u00b3", euro: "\u20ac", pound: "\u00a3",
+    yen: "\u00a5", cent: "\u00a2", ensp: " ", emsp: " ", thinsp: " ",
+    shy: "", zwnj: "", zwj: "", lrm: "", rlm: "",
+    aacute: "\u00e1", agrave: "\u00e0", acirc: "\u00e2", atilde: "\u00e3", auml: "\u00e4", aring: "\u00e5",
+    eacute: "\u00e9", egrave: "\u00e8", ecirc: "\u00ea", euml: "\u00eb",
+    iacute: "\u00ed", igrave: "\u00ec", icirc: "\u00ee", iuml: "\u00ef",
+    oacute: "\u00f3", ograve: "\u00f2", ocirc: "\u00f4", otilde: "\u00f5", ouml: "\u00f6",
+    uacute: "\u00fa", ugrave: "\u00f9", ucirc: "\u00fb", uuml: "\u00fc",
+    yacute: "\u00fd", yuml: "\u00ff", eth: "\u0111", dstrok: "\u0111",
+    Aacute: "\u00c1", Agrave: "\u00c0", Acirc: "\u00c2", Atilde: "\u00c3", Auml: "\u00c4", Aring: "\u00c5",
+    Eacute: "\u00c9", Egrave: "\u00c8", Ecirc: "\u00ca", Euml: "\u00cb",
+    Iacute: "\u00cd", Igrave: "\u00cc", Icirc: "\u00ce", Iuml: "\u00cf",
+    Oacute: "\u00d3", Ograve: "\u00d2", Ocirc: "\u00d4", Otilde: "\u00d5", Ouml: "\u00d6",
+    Uacute: "\u00da", Ugrave: "\u00d9", Ucirc: "\u00db", Uuml: "\u00dc",
+    Yacute: "\u00dd", ETH: "\u00d0", Dstrok: "\u0110"
+};
+
+/* Mã điểm Unicode → ký tự (xử lý cả cặp surrogate cho emoji). */
+function entityChar(code) {
+    if (!isFinite(code) || code <= 0 || code > 0x10FFFF) return "";
+    if (code <= 0xFFFF) return String.fromCharCode(code);
+    var c = code - 0x10000;
+    return String.fromCharCode(0xD800 + Math.floor(c / 1024), 0xDC00 + (c % 1024));
+}
+
+/**
+ * Giải mã HTML entity: số thập phân, hex và tên (kể cả entity thiếu dấu ";").
+ * Chạy 2 lượt để gỡ cả trường hợp bị encode 2 lần (&amp;ldquo;).
+ */
 function decodeEntities(s) {
     if (!s) return "";
-    return String(s)
-        .replace(/&#0*39;/g, "'")
-        .replace(/&#x27;/gi, "'")
-        .replace(/&quot;/g, "\"")
-        .replace(/&#0*34;/g, "\"")
-        .replace(/&lt;/g, "<")
-        .replace(/&gt;/g, ">")
-        .replace(/&nbsp;/g, " ")
-        .replace(/&amp;/g, "&");
+    var out = String(s);
+    for (var pass = 0; pass < 2; pass++) {
+        out = out.replace(/&#x([0-9a-fA-F]+);?/g, function (all, hex) {
+            return entityChar(parseInt(hex, 16));
+        });
+        out = out.replace(/&#(\d+);?/g, function (all, dec) {
+            return entityChar(parseInt(dec, 10));
+        });
+        out = out.replace(/&([a-zA-Z][a-zA-Z0-9]*);?/g, function (all, name) {
+            var value = QQ_ENTITIES[name];
+            return value == null ? all : value;
+        });
+    }
+    return out;
 }
 
 function stripTags(s) {
