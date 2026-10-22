@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "name": "Nguồn báo",
+  "updated": "2026-10-22",
+  "sources": [
+    {
+      "id": "tienphong",
+      "name": "Tiền Phong",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/tienphong.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=tienphong.vn&sz=64",
+      "author": "hieu-TQS",
+      "description": "Tin tức Tiền Phong: chuyên mục, tìm kiếm qua API, đọc bài đầy đủ."
+    }
+  ]
+}
