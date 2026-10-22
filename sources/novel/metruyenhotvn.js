@@ -23,6 +23,16 @@ var MTR_LIST_PATH = "/danh-sach/truyen-moi-cap-nhat/";
 
 var MTR_ENTITIES = {
     amp: "&", lt: "<", gt: ">", quot: "\"", apos: "'", nbsp: " ",
+    /* Dấu câu / ký hiệu hay gặp trong truyện (thiếu mấy mã này là chữ hiện &ldquo;) */
+    ldquo: "\u201c", rdquo: "\u201d", lsquo: "\u2018", rsquo: "\u2019",
+    sbquo: "\u201a", bdquo: "\u201e", laquo: "\u00ab", raquo: "\u00bb",
+    hellip: "\u2026", mdash: "\u2014", ndash: "\u2013", minus: "\u2212",
+    bull: "\u2022", middot: "\u00b7", times: "\u00d7", divide: "\u00f7",
+    copy: "\u00a9", reg: "\u00ae", trade: "\u2122", deg: "\u00b0",
+    plusmn: "\u00b1", frac12: "\u00bd", frac14: "\u00bc", frac34: "\u00be",
+    sup2: "\u00b2", sup3: "\u00b3", euro: "\u20ac", pound: "\u00a3",
+    yen: "\u00a5", cent: "\u00a2", ensp: " ", emsp: " ", thinsp: " ",
+    shy: "", zwnj: "", zwj: "", lrm: "", rlm: "",
     aacute: "\u00e1", agrave: "\u00e0", acirc: "\u00e2", atilde: "\u00e3", auml: "\u00e4", aring: "\u00e5",
     eacute: "\u00e9", egrave: "\u00e8", ecirc: "\u00ea", euml: "\u00eb",
     iacute: "\u00ed", igrave: "\u00ec", icirc: "\u00ee", iuml: "\u00ef",
@@ -41,18 +51,32 @@ function mtrTrim(s) {
     return String(s == null ? "" : s).replace(/^\s+|\s+$/g, "");
 }
 
+/* Mã điểm Unicode → ký tự (xử lý cả cặp surrogate cho emoji). */
+function mtrChar(code) {
+    if (!isFinite(code) || code <= 0 || code > 0x10FFFF) return "";
+    if (code <= 0xFFFF) return String.fromCharCode(code);
+    var c = code - 0x10000;
+    return String.fromCharCode(0xD800 + Math.floor(c / 1024), 0xDC00 + (c % 1024));
+}
+
+/**
+ * Giải mã HTML entity: số thập phân, hex và tên (kể cả entity thiếu dấu ";").
+ * Chạy 2 lượt để gỡ cả trường hợp bị encode 2 lần (&amp;ldquo;).
+ */
 function mtrDecode(s) {
     var out = String(s == null ? "" : s);
-    out = out.replace(/&#x([0-9a-fA-F]+);/g, function (all, hex) {
-        return String.fromCharCode(parseInt(hex, 16));
-    });
-    out = out.replace(/&#(\d+);/g, function (all, dec) {
-        return String.fromCharCode(parseInt(dec, 10));
-    });
-    out = out.replace(/&([a-zA-Z]+);?/g, function (all, name) {
-        var value = MTR_ENTITIES[name];
-        return value == null ? all : value;
-    });
+    for (var pass = 0; pass < 2; pass++) {
+        out = out.replace(/&#x([0-9a-fA-F]+);?/g, function (all, hex) {
+            return mtrChar(parseInt(hex, 16));
+        });
+        out = out.replace(/&#(\d+);?/g, function (all, dec) {
+            return mtrChar(parseInt(dec, 10));
+        });
+        out = out.replace(/&([a-zA-Z][a-zA-Z0-9]*);?/g, function (all, name) {
+            var value = MTR_ENTITIES[name];
+            return value == null ? all : value;
+        });
+    }
     return out;
 }
 
