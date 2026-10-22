@@ -12,6 +12,7 @@
  *  - parseNovelChapters(html)            -> [{ title, link }]  (trang mục lục phụ ?page=N)
  *  - parseNovelChapter(html, url)        -> { title, paragraphs:[...], prevLink, nextLink }
  *  - getNovelHeaders(url)                -> { Referer: "..." }
+ *  - getNovelCategories()                -> [{ title, url }]  danh mục (thể loại)
  *
  * Mọi hàm trả JSON string (Rhino không tự chuyển object sang Java).
  * ES5 thuần: không optional chaining, nullish coalescing, template literal, arrow function.
@@ -372,4 +373,56 @@ function parseNovelChapter(html, url) {
         prevLink: nav.prev,
         nextLink: nav.next
     });
+}
+
+/* Danh mục (thể loại) cho hàng chip ở màn chính. Trang thể loại dùng lại
+   parse danh sách + phân trang sẵn có nên không cần hàm riêng. */
+function getNovelCategories() {
+    return JSON.stringify([
+        { title: "Sắc", url: MTR_HOST + "/the-loai/sac/" },
+        { title: "Ngôn Tình", url: MTR_HOST + "/the-loai/ngon-tinh/" },
+        { title: "Đam Mỹ", url: MTR_HOST + "/the-loai/dam-my/" },
+        { title: "Đô Thị", url: MTR_HOST + "/the-loai/do-thi/" },
+        { title: "Tổng Tài", url: MTR_HOST + "/the-loai/tong-tai/" },
+        { title: "Ở Rể", url: MTR_HOST + "/the-loai/o-re/" },
+        { title: "Phục Thù", url: MTR_HOST + "/the-loai/phuc-thu/" },
+        { title: "Hệ Thống", url: MTR_HOST + "/the-loai/he-thong/" },
+        { title: "Sảng Văn", url: MTR_HOST + "/the-loai/sang-van/" },
+        { title: "Tu Luyện", url: MTR_HOST + "/the-loai/tu-luyen/" },
+        { title: "Lột Xác", url: MTR_HOST + "/the-loai/lot-xac/" },
+        { title: "Phấn Đấu", url: MTR_HOST + "/the-loai/phan-dau/" },
+        { title: "Trùng Sinh", url: MTR_HOST + "/the-loai/trung-sinh/" },
+        { title: "Cung Đấu", url: MTR_HOST + "/the-loai/cung-dau/" },
+        { title: "Huyền Huyễn", url: MTR_HOST + "/the-loai/huyen-huyen/" },
+        { title: "Kiếm Hiệp", url: MTR_HOST + "/the-loai/kiem-hiep/" },
+        { title: "Lịch sử", url: MTR_HOST + "/the-loai/lich-su/" },
+        { title: "Mạt Thế", url: MTR_HOST + "/the-loai/mat-the/" },
+        { title: "Cổ Đại", url: MTR_HOST + "/the-loai/co-dai/" },
+        { title: "Ngọt", url: MTR_HOST + "/the-loai/ngot/" },
+        { title: "Ngược", url: MTR_HOST + "/the-loai/nguoc/" },
+        { title: "Nữ Cường", url: MTR_HOST + "/the-loai/nu-cuong/" },
+        { title: "Nữ Phụ", url: MTR_HOST + "/the-loai/nu-phu/" },
+        { title: "Quân Nhân", url: MTR_HOST + "/the-loai/quan-nhan/" },
+        { title: "Đông Phương", url: MTR_HOST + "/the-loai/dong-phuong/" },
+        { title: "Quân Sự", url: MTR_HOST + "/the-loai/quan-su/" },
+        { title: "Quan Trường", url: MTR_HOST + "/the-loai/quan-truong/" },
+        { title: "Sủng", url: MTR_HOST + "/the-loai/sung/" },
+        { title: "Tiên Hiệp", url: MTR_HOST + "/the-loai/tien-hiep/" },
+        { title: "Tiểu Thuyết", url: MTR_HOST + "/the-loai/tieu-thuyet/" },
+        { title: "Tình Yêu", url: MTR_HOST + "/the-loai/tinh-yeu/" },
+        { title: "Trọng Sinh", url: MTR_HOST + "/the-loai/trong-sinh/" },
+        { title: "Truyện Ma", url: MTR_HOST + "/the-loai/truyen-ma-kinh-di/" },
+        { title: "Truyện Ngắn", url: MTR_HOST + "/the-loai/truyen-ngan/" },
+        { title: "Truyện Teen", url: MTR_HOST + "/the-loai/truyen-teen/" },
+        { title: "Xuyên Không", url: MTR_HOST + "/the-loai/xuyen-khong/" },
+        { title: "Bách Hợp", url: MTR_HOST + "/the-loai/bach-hop/" },
+        { title: "Dị Giới", url: MTR_HOST + "/the-loai/di-gioi/" },
+        { title: "Điền Văn", url: MTR_HOST + "/the-loai/dien-van/" },
+        { title: "Gia Đấu", url: MTR_HOST + "/the-loai/gia-dau/" },
+        { title: "Hài Hước", url: MTR_HOST + "/the-loai/hai-hoc/" },
+        { title: "Hay Hot", url: MTR_HOST + "/the-loai/hay-hot/" },
+        { title: "Hiện Đại", url: MTR_HOST + "/the-loai/hien-dai/" },
+        { title: "Hoàn Thành", url: MTR_HOST + "/the-loai/hoan-thanh/" },
+        { title: "Học Đường", url: MTR_HOST + "/the-loai/hoc-duong/" }
+    ]);
 }
