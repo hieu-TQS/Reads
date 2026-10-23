@@ -1,1 +1,387 @@
-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
+/*
+ * Nguồn truyện tranh Thế Giới Truyện (thegioitruyen.vn) — chạy trong Rhino (ES5).
+ *
+ * Hợp đồng (tất cả trả JSON string):
+ *  - getComicSource()                       -> { id, name, faviconUrl, baseUrl, searchable }
+ *  - getComicHomeUrl(page)                  -> string
+ *  - getComicSearchRequest(query, page)     -> { url, method, body, headers }
+ *  - parseComicList(html, url)              -> [{ title, link, coverUrl, author, latestChapter }]
+ *  - getComicNextPageUrl(currentUrl, page, html) -> string ("" nếu hết trang)
+ *  - parseComicDetail(html, url)            -> { title, coverUrl, author, description, chapters:[{title,link}] }
+ *  - parseComicChapter(html, url)           -> { title, imageUrls:[...], prevLink, nextLink }
+ *  - getComicHeaders(url)                   -> { Referer: "..." }
+ *  - getComicCategories()                   -> [{ title, url }]  danh mục (thể loại)
+ */
+
+var TGT_BASE = "https://thegioitruyen.vn";
+
+function getComicSource() {
+    return JSON.stringify({
+        id: "thegioitruyen",
+        name: "Thế Giới Truyện",
+        faviconUrl: "https://www.google.com/s2/favicons?domain=thegioitruyen.vn&sz=64",
+        baseUrl: TGT_BASE,
+        searchable: true
+    });
+}
+
+/* ------------------------------------------------------------------ */
+/* Helpers                                                             */
+/* ------------------------------------------------------------------ */
+
+function absUrl(u) {
+    if (!u) return "";
+    u = String(u).replace(/^\s+|\s+$/g, "");
+    if (u.indexOf("//") === 0) return "https:" + u;
+    if (u.indexOf("http://") === 0 || u.indexOf("https://") === 0) return u;
+    if (u.charAt(0) === "/") return TGT_BASE + u;
+    return TGT_BASE + "/" + u;
+}
+
+var TGT_ENTITIES = {
+    amp: "&", lt: "<", gt: ">", quot: "\"", apos: "'", nbsp: " ",
+    ldquo: "\u201c", rdquo: "\u201d", lsquo: "\u2018", rsquo: "\u2019",
+    hellip: "\u2026", mdash: "\u2014", ndash: "\u2013",
+    copy: "\u00a9", reg: "\u00ae", trade: "\u2122", deg: "\u00b0",
+    aacute: "\u00e1", agrave: "\u00e0", acirc: "\u00e2", atilde: "\u00e3",
+    eacute: "\u00e9", egrave: "\u00e8", ecirc: "\u00ea",
+    iacute: "\u00ed", igrave: "\u00ec", icirc: "\u00ee",
+    oacute: "\u00f3", ograve: "\u00f2", ocirc: "\u00f4", otilde: "\u00f5",
+    uacute: "\u00fa", ugrave: "\u00f9", ucirc: "\u00fb",
+    yacute: "\u00fd", eth: "\u0111", dstrok: "\u0111",
+    Aacute: "\u00c1", Agrave: "\u00c0", Acirc: "\u00c2",
+    Eacute: "\u00c9", Ecirc: "\u00ca",
+    Iacute: "\u00cd", Oacute: "\u00d3", Uacute: "\u00da", ETH: "\u0110", Dstrok: "\u0110"
+};
+
+function entityChar(code) {
+    if (!isFinite(code) || code <= 0 || code > 0x10FFFF) return "";
+    if (code <= 0xFFFF) return String.fromCharCode(code);
+    var c = code - 0x10000;
+    return String.fromCharCode(0xD800 + Math.floor(c / 1024), 0xDC00 + (c % 1024));
+}
+
+function decodeEntities(s) {
+    if (!s) return "";
+    var out = String(s);
+    for (var pass = 0; pass < 2; pass++) {
+        out = out.replace(/&#x([0-9a-fA-F]+);?/g, function (all, hex) {
+            return entityChar(parseInt(hex, 16));
+        });
+        out = out.replace(/&#(\d+);?/g, function (all, dec) {
+            return entityChar(parseInt(dec, 10));
+        });
+        out = out.replace(/&([a-zA-Z][a-zA-Z0-9]*);?/g, function (all, name) {
+            var value = TGT_ENTITIES[name];
+            return value == null ? all : value;
+        });
+    }
+    return out;
+}
+
+function stripTags(s) {
+    return String(s || "").replace(/<script[\s\S]*?<\/script>/gi, " ")
+        .replace(/<style[\s\S]*?<\/style>/gi, " ")
+        .replace(/<[^>]+>/g, " ");
+}
+
+function cleanText(s) {
+    return decodeEntities(stripTags(s)).replace(/\s+/g, " ").replace(/^\s+|\s+$/g, "");
+}
+
+function firstMatch(s, re) {
+    var m = re.exec(s);
+    return m ? m : null;
+}
+
+function attrOf(tag, name) {
+    var m = new RegExp(name + "\\s*=\\s*\"([^\"]*)\"", "i").exec(tag);
+    if (!m) m = new RegExp(name + "\\s*=\\s*'([^']*)'", "i").exec(tag);
+    return m ? decodeEntities(m[1]) : "";
+}
+
+function chapNumber(url) {
+    var m = /chap-([0-9]+(?:\.[0-9]+)?)/i.exec(String(url || ""));
+    if (!m) return 0;
+    var n = parseFloat(m[1]);
+    return isNaN(n) ? 0 : n;
+}
+
+function sortChaptersByNumber(list) {
+    list.sort(function (a, b) {
+        var na = chapNumber(a.link);
+        var nb = chapNumber(b.link);
+        if (na !== nb) return na - nb;
+        return 0;
+    });
+    return list;
+}
+
+/* ------------------------------------------------------------------ */
+/* Trang danh sách                                                     */
+/* ------------------------------------------------------------------ */
+
+function getComicHomeUrl(page) {
+    page = page ? parseInt(page, 10) : 1;
+    if (!page || page <= 1) return TGT_BASE + "/truyen/";
+    return TGT_BASE + "/truyen/page/" + page + "/";
+}
+
+function getComicSearchRequest(query, page) {
+    var url = TGT_BASE + "/?s=" + encodeURIComponent(String(query || "")) + "&post_type=truyen";
+    return JSON.stringify({
+        url: url,
+        method: "GET",
+        headers: { "Referer": TGT_BASE + "/" }
+    });
+}
+
+function parseComicList(html, url) {
+    if (!html) return JSON.stringify([]);
+    var items = [];
+    var parts = html.split(/<div\b[^>]*class\s*=\s*["']tgt-card["'][^>]*>/i);
+    for (var i = 1; i < parts.length; i++) {
+        var chunk = parts[i];
+
+        var titleAnchor = firstMatch(chunk, /<a\b([^>]*\btgt-card-title\b[^>]*)>([\s\S]*?)<\/a>/i);
+        var title = "";
+        var link = "";
+        if (titleAnchor) {
+            link = attrOf("<a " + titleAnchor[1] + ">", "href");
+            title = cleanText(titleAnchor[2]);
+        }
+        if (!link) {
+            var anyA = firstMatch(chunk, /<a\b[^>]*href\s*=\s*["']([^"']+)["']/i);
+            if (anyA) link = anyA[1];
+        }
+        if (!title && link) title = link;
+
+        var img = firstMatch(chunk, /<img\b[^>]*>/i);
+        var coverUrl = "";
+        if (img) {
+            var src = attrOf(img[0], "src");
+            if (src) coverUrl = absUrl(src);
+        }
+
+        var chapM = firstMatch(chunk, /class\s*=\s*["'][^"']*\btgt-card-chap\b[^"']*["'][\s\S]*?<span[^>]*>([\s\S]*?)<\/span>/i);
+        var latestChapter = chapM ? cleanText(chapM[1]) : "";
+
+        if (!link || !title) continue;
+        link = absUrl(link);
+        /* Bỏ kết quả tìm kiếm không phải trang truyện (link ?p=... thường 404) */
+        if (link.indexOf("/truyen/") < 0) continue;
+        items.push({
+            title: title,
+            link: link,
+            coverUrl: coverUrl,
+            author: "",
+            latestChapter: latestChapter
+        });
+    }
+
+    var seen = {};
+    var out = [];
+    for (var i = 0; i < items.length; i++) {
+        var it = items[i];
+        if (!it.link || !it.title) continue;
+        if (seen[it.link]) continue;
+        seen[it.link] = true;
+        out.push(it);
+    }
+    return JSON.stringify(out);
+}
+
+function getComicNextPageUrl(currentUrl, page, html) {
+    if (!html) return "";
+    var m = firstMatch(html, /<link\b[^>]*rel\s*=\s*["']next["'][^>]*href\s*=\s*["']([^"']+)["']/i);
+    if (!m) m = firstMatch(html, /<link\b[^>]*href\s*=\s*["']([^"']+)["'][^>]*rel\s*=\s*["']next["']/i);
+    if (!m) m = firstMatch(html, /<a\b[^>]*class\s*=\s*["'][^"']*\bnext page-numbers\b[^"']*["'][^>]*href\s*=\s*["']([^"']+)["']/i);
+    if (!m) return "";
+    var next = absUrl(m[1]);
+    return next === currentUrl ? "" : next;
+}
+
+/* ------------------------------------------------------------------ */
+/* Chi tiết truyện                                                     */
+/* ------------------------------------------------------------------ */
+
+function parseComicDetail(html, url) {
+    if (!html) return "";
+    var title = "";
+    var titleM = firstMatch(html, /<h1\b[^>]*class\s*=\s*["'][^"']*\btgt-info-title\b[^"']*["'][^>]*>([\s\S]*?)<\/h1>/i);
+    if (titleM) title = cleanText(titleM[1]);
+    if (!title) {
+        var ogTitle = firstMatch(html, /<meta\b[^>]*property\s*=\s*["']og:title["'][^>]*content\s*=\s*["']([^"']+)["']/i);
+        if (ogTitle) title = cleanText(ogTitle[1]);
+    }
+
+    var cover = "";
+    var thumbM = firstMatch(html, /class\s*=\s*["'][^"']*\btgt-info-thumb\b[^"']*["'][\s\S]*?<img\b[^>]*>/i);
+    if (thumbM) {
+        var imgTag = firstMatch(thumbM[0], /<img\b[^>]*>/i);
+        if (imgTag) cover = absUrl(attrOf(imgTag[0], "src"));
+    }
+    if (!cover) {
+        var ogImg = firstMatch(html, /<meta\b[^>]*property\s*=\s*["']og:image["'][^>]*content\s*=\s*["']([^"']+)["']/i);
+        if (ogImg) cover = absUrl(ogImg[1]);
+    }
+
+    var author = "";
+    var authorM = firstMatch(html, /Tác giả<\/th>\s*<td[^>]*>([\s\S]*?)<\/td>/i);
+    if (authorM) author = cleanText(authorM[1]);
+
+    var description = "";
+    var descM = firstMatch(html, /class\s*=\s*["'][^"']*\btgt-desc\b[^"']*["'][^>]*>([\s\S]*?)<\/div>/i);
+    if (descM) description = cleanText(descM[1]);
+    if (description.length > 1200) description = description.substring(0, 1200).replace(/\s+\S*$/, "") + "\u2026";
+
+    var chapters = [];
+    var seen = {};
+    var re = /<a\b([^>]*\btgt-chapter-item\b[^>]*)>([\s\S]*?)<\/a>/gi;
+    var m;
+    while ((m = re.exec(html)) !== null) {
+        var attrs = m[1];
+        var body = m[2];
+        var href = attrOf("<a " + attrs + ">", "href");
+        if (!href) continue;
+        var link = absUrl(href);
+        if (seen[link]) continue;
+        seen[link] = true;
+        var chapTitle = "";
+        var nameM = firstMatch(body, /class\s*=\s*["'][^"']*\btgt-chap-name\b[^"']*["'][^>]*>([\s\S]*?)<\/span>/i);
+        if (nameM) chapTitle = cleanText(nameM[1]);
+        if (!chapTitle) chapTitle = cleanText(body);
+        if (!chapTitle) continue;
+        chapters.push({ title: chapTitle, link: link });
+    }
+
+    return JSON.stringify({
+        title: title,
+        coverUrl: cover,
+        author: author,
+        description: description,
+        chapters: sortChaptersByNumber(chapters)
+    });
+}
+
+/* ------------------------------------------------------------------ */
+/* Trang đọc chương                                                    */
+/* ------------------------------------------------------------------ */
+
+function parseComicChapter(html, url) {
+    if (!html) return "";
+    var title = "";
+    var selM = firstMatch(html, /<option\b[^>]*selected[^>]*>([\s\S]*?)<\/option>/i);
+    if (selM) title = cleanText(selM[1]);
+    if (!title) {
+        var tM = firstMatch(html, /<title>([\s\S]*?)<\/title>/i);
+        if (tM) title = cleanText(tM[1]);
+    }
+
+    var imageUrls = [];
+    var seen = {};
+    var imgRe = /<img\b[^>]*>/gi;
+    var im;
+    while ((im = imgRe.exec(html)) !== null) {
+        var tag = im[0];
+        if (tag.indexOf("tgt-reader-page") < 0) continue;
+        var u = attrOf(tag, "src");
+        if (!u) continue;
+        if (u.indexOf("data:") === 0) continue;
+        var abs = absUrl(u);
+        if (seen[abs]) continue;
+        seen[abs] = true;
+        imageUrls.push(abs);
+    }
+
+    var prevLink = "";
+    var nextLink = "";
+    var aRe = /<a\b([^>]*)>([\s\S]*?)<\/a>/gi;
+    var am;
+    while ((am = aRe.exec(html)) !== null) {
+        var attrs = am[1];
+        if (attrs.indexOf("tgt-reader-btn") < 0) continue;
+        var href = attrOf("<a " + attrs + ">", "href");
+        if (!href) continue;
+        var abs = absUrl(href);
+        var text = cleanText(am[2]);
+        if (/tr\u01b0\u1edbc/i.test(text)) {
+            if (!prevLink) prevLink = abs;
+        } else if (/sau/i.test(text)) {
+            if (!nextLink) nextLink = abs;
+        }
+    }
+
+    return JSON.stringify({
+        title: title,
+        imageUrls: imageUrls,
+        prevLink: prevLink,
+        nextLink: nextLink
+    });
+}
+
+function getComicHeaders(url) {
+    return JSON.stringify({
+        "Referer": TGT_BASE + "/",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/*,*/*;q=0.8"
+    });
+}
+
+function getComicCategories() {
+    return JSON.stringify([
+    { title: '16+', url: 'https://thegioitruyen.vn/the-loai/16/' },
+    { title: 'Action', url: 'https://thegioitruyen.vn/the-loai/action/' },
+    { title: 'Adult', url: 'https://thegioitruyen.vn/the-loai/adult/' },
+    { title: 'Adventure', url: 'https://thegioitruyen.vn/the-loai/adventure/' },
+    { title: 'Anime', url: 'https://thegioitruyen.vn/the-loai/anime/' },
+    { title: 'Chuyển Sinh', url: 'https://thegioitruyen.vn/the-loai/chuyen-sinh/' },
+    { title: 'Cổ Đại', url: 'https://thegioitruyen.vn/the-loai/co-dai/' },
+    { title: 'Comedy', url: 'https://thegioitruyen.vn/the-loai/comedy/' },
+    { title: 'Comic', url: 'https://thegioitruyen.vn/the-loai/comic/' },
+    { title: 'Cooking', url: 'https://thegioitruyen.vn/the-loai/cooking/' },
+    { title: 'Đam Mỹ', url: 'https://thegioitruyen.vn/the-loai/dam-my/' },
+    { title: 'Doujinshi', url: 'https://thegioitruyen.vn/the-loai/doujinshi/' },
+    { title: 'Drama', url: 'https://thegioitruyen.vn/the-loai/drama/' },
+    { title: 'Ecchi', url: 'https://thegioitruyen.vn/the-loai/ecchi/' },
+    { title: 'Fantasy', url: 'https://thegioitruyen.vn/the-loai/fantasy/' },
+    { title: 'Gender Bender', url: 'https://thegioitruyen.vn/the-loai/gender-bender/' },
+    { title: 'Harem', url: 'https://thegioitruyen.vn/the-loai/harem/' },
+    { title: 'Historical', url: 'https://thegioitruyen.vn/the-loai/historical/' },
+    { title: 'Horror', url: 'https://thegioitruyen.vn/the-loai/horror/' },
+    { title: 'Josei', url: 'https://thegioitruyen.vn/the-loai/josei/' },
+    { title: 'Live action', url: 'https://thegioitruyen.vn/the-loai/live-action/' },
+    { title: 'Manga', url: 'https://thegioitruyen.vn/the-loai/manga/' },
+    { title: 'Manhua', url: 'https://thegioitruyen.vn/the-loai/manhua/' },
+    { title: 'Manhwa', url: 'https://thegioitruyen.vn/the-loai/manhwa/' },
+    { title: 'Martial Arts', url: 'https://thegioitruyen.vn/the-loai/martial-arts/' },
+    { title: 'Mature', url: 'https://thegioitruyen.vn/the-loai/mature/' },
+    { title: 'Mecha', url: 'https://thegioitruyen.vn/the-loai/mecha/' },
+    { title: 'Mystery', url: 'https://thegioitruyen.vn/the-loai/mystery/' },
+    { title: 'Ngôn Tình', url: 'https://thegioitruyen.vn/the-loai/ngon-tinh/' },
+    { title: 'One shot', url: 'https://thegioitruyen.vn/the-loai/one-shot/' },
+    { title: 'Psychological', url: 'https://thegioitruyen.vn/the-loai/psychological/' },
+    { title: 'Romance', url: 'https://thegioitruyen.vn/the-loai/romance/' },
+    { title: 'School Life', url: 'https://thegioitruyen.vn/the-loai/school-life/' },
+    { title: 'Sci-fi', url: 'https://thegioitruyen.vn/the-loai/sci-fi/' },
+    { title: 'Seinen', url: 'https://thegioitruyen.vn/the-loai/seinen/' },
+    { title: 'Shoujo', url: 'https://thegioitruyen.vn/the-loai/shoujo/' },
+    { title: 'Shoujo Ai', url: 'https://thegioitruyen.vn/the-loai/shoujo-ai/' },
+    { title: 'Shounen', url: 'https://thegioitruyen.vn/the-loai/shounen/' },
+    { title: 'Shounen Ai', url: 'https://thegioitruyen.vn/the-loai/shounen-ai/' },
+    { title: 'Slice of Life', url: 'https://thegioitruyen.vn/the-loai/slice-of-life/' },
+    { title: 'Smut', url: 'https://thegioitruyen.vn/the-loai/smut/' },
+    { title: 'Soft Yaoi', url: 'https://thegioitruyen.vn/the-loai/soft-yaoi/' },
+    { title: 'Soft Yuri', url: 'https://thegioitruyen.vn/the-loai/soft-yuri/' },
+    { title: 'Sports', url: 'https://thegioitruyen.vn/the-loai/sports/' },
+    { title: 'Supernatural', url: 'https://thegioitruyen.vn/the-loai/supernatural/' },
+    { title: 'Tạp chí truyện tranh', url: 'https://thegioitruyen.vn/the-loai/tap-chi-truyen-tranh/' },
+    { title: 'Thiếu Nhi', url: 'https://thegioitruyen.vn/the-loai/thieu-nhi/' },
+    { title: 'Tragedy', url: 'https://thegioitruyen.vn/the-loai/tragedy/' },
+    { title: 'Trinh Thám', url: 'https://thegioitruyen.vn/the-loai/trinh-tham/' },
+    { title: 'Truyện Màu', url: 'https://thegioitruyen.vn/the-loai/truyen-mau/' },
+    { title: 'Truyện scan', url: 'https://thegioitruyen.vn/the-loai/truyen-scan/' },
+    { title: 'Việt Nam', url: 'https://thegioitruyen.vn/the-loai/viet-nam/' },
+    { title: 'Webtoon', url: 'https://thegioitruyen.vn/the-loai/webtoon/' },
+    { title: 'Xuyên Không', url: 'https://thegioitruyen.vn/the-loai/xuyen-khong/' }
+    ]);
+}

@@ -1,1 +1,283 @@
-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
+/*
+ * BuonDua (buondua.com) — nguồn truyện tranh dạng ảnh (bộ sưu tập ảnh).
+ *
+ * Hợp đồng truyện tranh (xem JsComicSite.kt):
+ *  - getComicSource()                -> { id, name, faviconUrl, baseUrl, searchable }
+ *  - getComicHomeUrl(page)           -> URL trang danh sách
+ *  - getComicSearchRequest(query, page) -> { url, method, body, headers }
+ *  - parseComicList(html, url)        -> [{ title, link, coverUrl, author, latestChapter }]
+ *  - getComicNextPageUrl(currentUrl, page, html) -> URL kế, "" = hết
+ *  - parseComicDetail(html, url)      -> { title, coverUrl, author, description, chapters:[{title,link}] }
+ *  - parseComicChapter(html, url)     -> { title, imageUrls:[...], prevLink, nextLink }
+ *  - getComicHeaders(url)            -> map header (Referer cho CDN ảnh)
+ *  - getComicCategories()            -> [{ title, url }] (tuỳ chọn)
+ *
+ * ES5 thuần. Mọi hàm trả JSON string.
+ */
+
+var BD_HOST = "https://buondua.com";
+var BD_UA = "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 Chrome/120 Mobile Safari/537.36";
+
+/* ---------- Entity map ---------- */
+var BD_ENTITIES = {
+    amp: "&", lt: "<", gt: ">", quot: "\"", apos: "'", nbsp: " ",
+    ldquo: "\u201c", rdquo: "\u201d", lsquo: "\u2018", rsquo: "\u2019",
+    hellip: "\u2026", mdash: "\u2014", ndash: "\u2013", bull: "\u2022",
+    middot: "\u00b7", times: "\u00d7", copy: "\u00a9", reg: "\u00ae",
+    trade: "\u2122", deg: "\u00b0"
+};
+
+function BD_trim(s) { return String(s == null ? "" : s).replace(/^\s+|\s+$/g, ""); }
+
+function BD_char(code) {
+    if (!isFinite(code) || code <= 0 || code > 0x10FFFF) return "";
+    if (code <= 0xFFFF) return String.fromCharCode(code);
+    var c = code - 0x10000;
+    return String.fromCharCode(0xD800 + Math.floor(c / 1024), 0xDC00 + (c % 1024));
+}
+
+function BD_decode(s) {
+    var out = String(s == null ? "" : s);
+    for (var pass = 0; pass < 2; pass++) {
+        out = out.replace(/&#x([0-9a-fA-F]+);?/g, function (all, hex) { return BD_char(parseInt(hex, 16)); });
+        out = out.replace(/&#(\d+);?/g, function (all, dec) { return BD_char(parseInt(dec, 10)); });
+        out = out.replace(/&([a-zA-Z][a-zA-Z0-9]*);?/g, function (all, name) {
+            var v = BD_ENTITIES[name];
+            return v == null ? all : v;
+        });
+    }
+    return out;
+}
+
+function BD_abs(u) {
+    if (!u) return "";
+    u = String(u).replace(/^\s+|\s+$/g, "");
+    if (u.indexOf("//") === 0) return "https:" + u;
+    if (u.indexOf("http://") === 0 || u.indexOf("https://") === 0) return u;
+    if (u.charAt(0) === "/") return BD_HOST + u;
+    return BD_HOST + "/" + u;
+}
+
+function BD_stripTags(s) {
+    return String(s == null ? "" : s)
+        .replace(/<script[\s\S]*?<\/script>/gi, " ")
+        .replace(/<style[\s\S]*?<\/style>/gi, " ")
+        .replace(/<[^>]+>/g, " ");
+}
+
+function BD_text(html) {
+    var s = BD_stripTags(html);
+    s = BD_decode(s);
+    s = s.replace(/\s+/g, " ");
+    return BD_trim(s);
+}
+
+/* ---------- Source ---------- */
+
+function getComicSource() {
+    return JSON.stringify({
+        id: "buondua",
+        name: "BuonDua",
+        faviconUrl: "https://www.google.com/s2/favicons?domain=buondua.com&sz=64",
+        baseUrl: BD_HOST,
+        searchable: true
+    });
+}
+
+function getComicHomeUrl(page) {
+    page = parseInt(page, 10);
+    if (isNaN(page) || page < 1) page = 1;
+    if (page <= 1) return BD_HOST + "/";
+    return BD_HOST + "/?start=" + ((page - 1) * 20);
+}
+
+function getComicSearchRequest(query, page) {
+    page = parseInt(page, 10);
+    if (isNaN(page) || page < 1) page = 1;
+    var url;
+    if (page <= 1) url = BD_HOST + "/?s=" + encodeURIComponent(String(query == null ? "" : query));
+    else url = BD_HOST + "/?s=" + encodeURIComponent(String(query == null ? "" : query)) + "&start=" + ((page - 1) * 20);
+    return JSON.stringify({
+        url: url,
+        method: "GET",
+        body: "",
+        headers: {
+            "User-Agent": BD_UA,
+            "Referer": BD_HOST + "/",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+        }
+    });
+}
+
+/* ---------- List ---------- */
+
+function parseComicList(html, url) {
+    var out = [];
+    var seen = {};
+    var s = String(html == null ? "" : html);
+    var parts = s.split(/<div class="items-row/i);
+    for (var i = 1; i < parts.length; i++) {
+        var chunk = parts[i];
+        var cut = chunk.indexOf('<div class="items-row');
+        if (cut > 0) chunk = chunk.substring(0, cut);
+
+        var linkM = /<h2[^>]*>[\s\S]*?<a[^>]+href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/i.exec(chunk);
+        if (!linkM) {
+            linkM = /<a class="item-link"[^>]*href="([^"]+)"[^>]*>([\s\S]{0,120}?)<\/a>/i.exec(chunk);
+        }
+        if (!linkM) continue;
+        var link = BD_abs(linkM[1]);
+        if (seen[link]) continue;
+        seen[link] = 1;
+
+        var title = BD_text(linkM[2]);
+        if (!title) continue;
+
+        var imgM = /<img[^>]+src="(https:\/\/i2\.buondua\.com\/[^"]+)"/i.exec(chunk);
+        if (!imgM) imgM = /<img[^>]+src="([^"]+)"/i.exec(chunk);
+        var coverUrl = null;
+        if (imgM) {
+            var src = imgM[1];
+            if (src.indexOf("data:image") === -1) coverUrl = BD_abs(src.split("?")[0]);
+        }
+
+        out.push({
+            title: title,
+            link: link,
+            coverUrl: coverUrl,
+            author: null,
+            latestChapter: null
+        });
+    }
+    return JSON.stringify(out);
+}
+
+function getComicNextPageUrl(currentUrl, page, html) {
+    page = parseInt(page, 10);
+    if (isNaN(page) || page < 1) page = 1;
+    var s = String(html == null ? "" : html);
+    // find ?start=N links, pick smallest > current offset
+    var currentOffset = (page - 1) * 20;
+    var re = /href="([^"]*\?start=(\d+)[^"]*)"/g;
+    var m;
+    var best = null;
+    var bestOff = 999999;
+    while ((m = re.exec(s)) !== null) {
+        var off = parseInt(m[2], 10);
+        if (!isNaN(off) && off > currentOffset && off < bestOff) {
+            bestOff = off;
+            best = BD_abs(m[1]);
+        }
+    }
+    if (best) return best;
+    if (page < 100) return BD_HOST + "/?start=" + (page * 20);
+    return "";
+}
+
+/* ---------- Detail ---------- */
+
+function parseComicDetail(html, url) {
+    var s = String(html == null ? "" : html);
+    var titleM = /<title>([\s\S]*?)<\/title>/i.exec(s);
+    var title = titleM ? BD_text(titleM[1].replace(/\s*-\s*Page\s*\d+\s*\/\s*\d+/i, "")) : "";
+    if (!title) {
+        var og = /<meta property="og:title" content="([^"]+)"/i.exec(s);
+        if (og) title = BD_decode(og[1]).replace(/\s*-\s*\(?\s*Page\s*\d+\s*\/\s*\d+\s*\)?/i, "");
+    }
+
+    var coverM = /src="(https:\/\/i2\.buondua\.com\/[^"]+)"/i.exec(s);
+    var coverUrl = coverM ? coverM[1].split("?")[0] : null;
+
+    var chapters = [{ title: "Xem ảnh", link: url }];
+
+    return JSON.stringify({
+        title: title || url,
+        coverUrl: coverUrl,
+        author: null,
+        description: null,
+        chapters: chapters
+    });
+}
+
+/* ---------- Chapter content ---------- */
+
+function parseComicChapter(html, url) {
+    var s = String(html == null ? "" : html);
+
+    var titleM = /<title>([\s\S]*?)<\/title>/i.exec(s);
+    var title = titleM ? BD_text(titleM[1].replace(/\s*-\s*\(?\s*Page\s*\d+\s*\/\s*\d+\s*\)?/i, "")) : "";
+    if (!title) {
+        var og = /<meta property="og:title" content="([^"]+)"/i.exec(s);
+        if (og) title = BD_decode(og[1]).replace(/\s*-\s*\(?\s*Page\s*\d+\s*\/\s*\d+\s*\)?/i, "");
+    }
+
+    // images in article-fulltext region
+    var imgs = [];
+    var seen = {};
+    var start = s.indexOf("article-fulltext");
+    var end = s.indexOf("pagination-next", start);
+    var block = (start >= 0) ? s.substring(start, (end > start ? end : start + 200000)) : s;
+    var re = /src="(https:\/\/i2\.buondua\.com\/[^"]+\.(?:webp|jpg|jpeg|png)(?:\?[^"]*)?)"/g;
+    var m;
+    while ((m = re.exec(block)) !== null) {
+        var src = m[1].split("?")[0];
+        if (!seen[src]) { seen[src] = 1; imgs.push(src); }
+    }
+    if (imgs.length === 0) {
+        var re2 = /src="(https:\/\/i2\.buondua\.com\/[^"]+)"/g;
+        while ((m = re2.exec(s)) !== null) {
+            var src2 = m[1].split("?")[0];
+            if (!seen[src2]) { seen[src2] = 1; imgs.push(src2); }
+        }
+    }
+
+    // current page number from url or title
+    var current = 1;
+    var pm = String(url).match(/[?&]page=(\d+)/);
+    if (pm) current = parseInt(pm[1], 10);
+    else {
+        var tm = title.match(/Page\s*(\d+)\s*\/\s*\d+/i);
+        if (tm) current = parseInt(tm[1], 10);
+    }
+    if (isNaN(current) || current < 1) current = 1;
+
+    var base = String(url).split("?")[0];
+    if (base.charAt(base.length - 1) !== "/") base += "/";
+
+    var nextLink = "";
+    if (s.indexOf("?page=" + (current + 1)) >= 0) {
+        nextLink = base + "?page=" + (current + 1);
+    }
+    var prevLink = "";
+    if (current > 1) {
+        if (current - 1 <= 1) prevLink = base.replace(/\?page=\d+/, "");
+        else prevLink = base + "?page=" + (current - 1);
+    }
+    // clean trailing ?page=1
+    if (prevLink.indexOf("?page=1") >= 0) prevLink = prevLink.split("?")[0];
+
+    return JSON.stringify({
+        title: title,
+        imageUrls: imgs,
+        prevLink: prevLink,
+        nextLink: nextLink
+    });
+}
+
+/* ---------- Headers ---------- */
+
+function getComicHeaders(url) {
+    return JSON.stringify({
+        "User-Agent": BD_UA,
+        "Referer": BD_HOST + "/",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/*,*/*;q=0.8"
+    });
+}
+
+/* ---------- Categories ---------- */
+
+function getComicCategories() {
+    return JSON.stringify([
+        { "title": "Hot", "url": "https://buondua.com/hot" }
+    ]);
+}

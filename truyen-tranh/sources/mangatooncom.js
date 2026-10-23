@@ -1,1 +1,288 @@
-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
+/* MangaToon (mangatooncom.vn) - server-rendered HTML + JSON mục lục nhúng sẵn.
+   - Site tra 503/404 voi query co dau tieng Viet nen phai bo dau truoc khi tim.
+   - Muc luc day du nam trong bien "data" (JSON.parse) o trang chi tiet.
+   - Trang chương: ảnh lazy-load qua data-src, prev/next dùng chung class
+     page-icons-next nên phải phân biệt bằng chữ "Chương trước"/"Chương sau". */
+var MT_HOST = "https://mangatooncom.vn";
+
+function MT_abs(u) {
+    if (!u) return "";
+    u = String(u).replace(/^\s+|\s+$/g, "");
+    if (u.indexOf("//") === 0) return "https:" + u;
+    if (u.indexOf("http://") === 0 || u.indexOf("https://") === 0) return u;
+    if (u.charAt(0) === "/") return MT_HOST + u;
+    return MT_HOST + "/" + u;
+}
+
+function MT_clean(s) {
+    s = String(s == null ? "" : s);
+    s = s.replace(/<[^>]*>/g, " ");
+    s = s.replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&quot;/g, "\"")
+         .replace(/&#0?39;|&apos;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+    return s.replace(/\s+/g, " ").replace(/^\s+|\s+$/g, "");
+}
+
+/* Bỏ dấu tiếng Việt (site trả 503 nếu query có ký tự có dấu). */
+function MT_ascii(s) {
+    var from = "àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ";
+    var to   = "aaaaaaaaaaaaaaaaaeeeeeeeeeeeiiiiiooooooooooooooooouuuuuuuuuuuyyyyyd";
+    var out = "";
+    s = String(s || "").toLowerCase();
+    for (var i = 0; i < s.length; i++) {
+        var c = s.charAt(i);
+        var j = from.indexOf(c);
+        out += (j >= 0 ? to.charAt(j) : c);
+    }
+    return out;
+}
+
+function MT_slugTitle(link) {
+    var s = String(link || "").replace(/\?.*$/, "").replace(/\/+$/, "").split("/");
+    var slug = s.length ? s[s.length - 1] : "";
+    return slug.replace(/-/g, " ").replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+}
+
+function getComicSource() {
+    return JSON.stringify({
+        id: "mangatooncom",
+        name: "MangaToon",
+        faviconUrl: "https://www.google.com/s2/favicons?domain=mangatooncom.vn&sz=64",
+        baseUrl: MT_HOST,
+        searchable: true
+    });
+}
+
+/* /vi/genre/comic = toàn bộ truyện, 18 truyện/trang; ?page=N đánh số từ 0
+   (trang đầu không có tham số). */
+function getComicHomeUrl(page) {
+    page = parseInt(page, 10);
+    if (isNaN(page) || page < 1) page = 1;
+    return MT_HOST + "/vi/genre/comic" + (page > 1 ? "?page=" + (page - 1) : "");
+}
+
+function getComicSearchRequest(q, page) {
+    return JSON.stringify({
+        url: MT_HOST + "/vi/search?word=" + encodeURIComponent(MT_ascii(q)),
+        method: "GET",
+        body: null,
+        headers: {}
+    });
+}
+
+function parseComicList(html, url) {
+    var h = String(html || "");
+    /* Trang tìm kiếm không có kết quả chỉ hiện "Đề xuất liên quan" — bỏ qua. */
+    if (h.indexOf("class=\"no-result\"") >= 0 && h.indexOf("class=\"comics-result\"") < 0) return "[]";
+    var out = [];
+    var seen = {};
+    var re = /href="((?:https:\/\/mangatooncom\.vn)?\/vi\/[a-z0-9-]+\?content_id=(\d+))"/g;
+    var m;
+    while ((m = re.exec(h)) !== null) {
+        var link = MT_abs(m[1]);
+        var id = m[2];
+        if (seen[id]) continue;
+        seen[id] = 1;
+
+        var win = h.substr(re.lastIndex, 1600);
+
+        var title = "";
+        var t1 = /class="content-title"[^>]*>\s*(?:<span[^>]*>)?([^<]+)/.exec(win);
+        if (t1) title = MT_clean(t1[1]);
+        if (!title) {
+            var t2 = /class="recommend-comics-title"[^>]*>\s*<span[^>]*>([^<]+)/.exec(win);
+            if (t2) title = MT_clean(t2[1]);
+        }
+        if (!title) {
+            var alt = /alt="([^"]+)"/.exec(win);
+            if (alt) title = MT_clean(alt[1]);
+        }
+
+        var cover = null;
+        var img = /<img[^>]*data-src="([^"]+)"/.exec(win);
+        if (img) cover = MT_abs(img[1]);
+
+        var latest = null;
+        var chap = /(?:Cập nhật đến|Cập nhật tới)\s*(?:chap|chương)\s*(\d+)/i.exec(win);
+        if (chap) latest = "Chap " + chap[1];
+
+        out.push({
+            title: title || MT_slugTitle(link),
+            link: link,
+            coverUrl: cover,
+            author: null,
+            latestChapter: latest
+        });
+        if (out.length >= 40) break;
+    }
+    return JSON.stringify(out);
+}
+
+function getComicNextPageUrl(currentUrl, page, html) {
+    page = parseInt(page, 10);
+    if (isNaN(page) || page < 1) page = 1;
+    var cur = String(currentUrl || "");
+    /* Trang tìm kiếm không phân trang (page=N trả lại đúng trang đầu). */
+    if (cur.indexOf("word=") >= 0) return "";
+
+    var h = String(html || "");
+    var nextRe = /<a[^>]*href="([^"]+)"[^>]*>\s*<span[^>]*class="[^"]*\bnext\b[^"]*"/g;
+    var m;
+    while ((m = nextRe.exec(h)) !== null) {
+        var link = MT_abs(m[1]);
+        if (link !== cur) return link;
+    }
+    return "";
+}
+
+function MT_episodes(h, contentId) {
+    var arr = [];
+    var re = /data\s*=\s*JSON\.parse\('(\[[\s\S]*?\])'\)/g;
+    var m;
+    while ((m = re.exec(h)) !== null) {
+        var raw = m[1].replace(/\\"/g, "\"").replace(/\\'/g, "'");
+        if (raw.indexOf("\"weight\"") < 0 && raw.indexOf("\"id\"") < 0) continue;
+        try {
+            var list = JSON.parse(raw);
+            if (list && list.length) { arr = list; break; }
+        } catch (e) { }
+    }
+
+    var chapters = [];
+    var seen = {};
+    for (var i = 0; i < arr.length; i++) {
+        var ep = arr[i];
+        if (!ep || ep.id == null) continue;
+        var key = String(ep.id);
+        if (seen[key]) continue;
+        seen[key] = 1;
+        var num = ep.weight != null ? ep.weight : ep.id;
+        chapters.push({
+            title: ep.title ? String(ep.title) : "Chương " + num,
+            link: MT_HOST + "/vi/watch/" + contentId + "/" + ep.id,
+            date: ep.open_at ? String(ep.open_at) : null,
+            _w: parseInt(num, 10) || 0
+        });
+    }
+    chapters.sort(function (a, b) { return a._w - b._w; });
+    for (var j = 0; j < chapters.length; j++) delete chapters[j]._w;
+    return chapters;
+}
+
+function parseComicDetail(html, url) {
+    var h = String(html || "");
+    var link = String(url || "");
+    var contentId = "";
+    var cid = /content_id=(\d+)/.exec(link) || /\/vi\/watch\/(\d+)\//.exec(h);
+    if (cid) contentId = cid[1];
+
+    var title = "";
+    var h1 = /<h1[^>]*>([\s\S]*?)<\/h1>/i.exec(h);
+    if (h1) title = MT_clean(h1[1]);
+    if (!title) {
+        var t = /<title>([\s\S]*?)<\/title>/i.exec(h);
+        if (t) title = MT_clean(t[1]).replace(/\s*[-–|]\s*(?:MangaToon|Mangatoon)\s*$/i, "");
+    }
+
+    var cover = null;
+    var og = /property="og:image"[^>]*content="([^"]+)"/.exec(h) || /content="([^"]+)"[^>]*property="og:image"/.exec(h);
+    if (og) cover = MT_abs(og[1]);
+
+    var desc = null;
+    var meta = /name="description"\s+content="([^"]*)"/.exec(h);
+    if (meta && MT_clean(meta[1])) desc = MT_clean(meta[1]);
+
+    var chapters = contentId ? MT_episodes(h, contentId) : [];
+    if (chapters.length === 0) {
+        var seen = {};
+        var re = /href="((?:https:\/\/mangatooncom\.vn)?\/vi\/watch\/(\d+)\/(\d+))"/g;
+        var m;
+        while ((m = re.exec(h)) !== null) {
+            if (seen[m[3]]) continue;
+            seen[m[3]] = 1;
+            chapters.push({ title: "Chương", link: MT_abs(m[1]) });
+        }
+    }
+    if (chapters.length === 0) chapters = [{ title: "Đọc", link: link }];
+
+    return JSON.stringify({
+        title: title || MT_slugTitle(link),
+        coverUrl: cover,
+        author: null,
+        description: desc,
+        chapters: chapters
+    });
+}
+
+function parseComicChapter(html, url) {
+    var h = String(html || "");
+    var cur = String(url || "").replace(/[?#].*$/, "").replace(/\/+$/, "");
+    var imgs = [];
+    var seen = {};
+
+    /* Ảnh trang: alt="<tên truyện> - Chapter N - <index>". */
+    var reAlt = /<img[^>]*data-src="([^"]+)"[^>]*alt="[^"]*\s-\s\d+"/g;
+    var m;
+    while ((m = reAlt.exec(h)) !== null) {
+        var u = MT_abs(m[1]);
+        if (seen[u]) continue;
+        seen[u] = 1;
+        imgs.push(u);
+    }
+    if (imgs.length === 0) {
+        var reCdn = /data-src="(https:\/\/[^"]*\/ps\/[^"]+\.(?:webp|jpg|jpeg|png))"/g;
+        while ((m = reCdn.exec(h)) !== null) {
+            var v = MT_abs(m[1]);
+            if (seen[v]) continue;
+            seen[v] = 1;
+            imgs.push(v);
+        }
+    }
+
+    function MT_nav(label) {
+        var re = new RegExp("<a[^>]*href=\"([^\"]+)\"[^>]*>\\s*<span class=\"page-text\">" + label + "</span>");
+        var x = re.exec(h);
+        if (!x) return "";
+        var u = MT_abs(x[1]).replace(/[?#].*$/, "").replace(/\/+$/, "");
+        return u === cur ? "" : u;
+    }
+
+    var title = "";
+    var t = /<h1 class="watch-page-heading"[^>]*>([\s\S]*?)<\/h1>/.exec(h);
+    if (t) title = MT_clean(t[1]);
+
+    return JSON.stringify({
+        title: title,
+        imageUrls: imgs,
+        prevLink: MT_nav("Chương trước"),
+        nextLink: MT_nav("Chương sau")
+    });
+}
+
+function getComicHeaders(url) {
+    return JSON.stringify({
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+        "Referer": MT_HOST + "/",
+        "Accept-Language": "vi-VN,vi;q=0.9"
+    });
+}
+
+function getComicCategories() {
+    var cats = [
+        ["Thanh niên", "/vi/genre/comic"],
+        ["Mới nhất", "/vi/genre/new"],
+        ["Đang hot", "/vi/genre/hot"],
+        ["Đã Full", "/vi/genre/tags/32"],
+        ["Tổng tài", "/vi/genre/tags/17"],
+        ["Huyền huyễn", "/vi/genre/tags/10"],
+        ["Nữ cường", "/vi/genre/tags/87"],
+        ["Mạo hiểm", "/vi/genre/tags/29"],
+        ["Trường học", "/vi/genre/tags/2"],
+        ["Harem", "/vi/genre/tags/193"],
+        ["Xuyên không", "/vi/genre/tags/12"]
+    ];
+    var out = [];
+    for (var i = 0; i < cats.length; i++) {
+        out.push({ title: cats[i][0], url: MT_HOST + cats[i][1] });
+    }
+    return JSON.stringify(out);
+}
