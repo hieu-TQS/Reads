@@ -26,7 +26,7 @@ var EM_CATEGORIES = [
     { name: "Sống đẹp", pageUrl: EM_HOST + "/sang-dep.htm" },
     { name: "Ăn ngon", pageUrl: EM_HOST + "/an-ngon.htm" },
     { name: "Video clips", pageUrl: EM_HOST + "/video-clips-v.htm" },
-    { name: "Khác", pageUrl: EM_HOST + "/khac.htm" ]
+    { name: "Khác", pageUrl: EM_HOST + "/khac.htm" }
 ];
 
 function getNewsSource() {
