@@ -2,12 +2,12 @@
  * Emdep (emdep.vn) — nguồn báo dạng JS.
  * Nền tảng WordPress, HTML tĩnh, không Cloudflare/challenge.
  * 
- * - Danh sách: mỗi tin là `<article>` hoặc `<div class="item">`; tiêu đề 
- *   nằm trong `<h3>` hoặc `<h2>` kèm link; ảnh `src`/`data-src`; mô tả `div.description` hoặc `p.sapo`.
- *   Phân trang: `?page=N` (block `div.pagination`), trang chủ không phân trang.
- * - Tìm kiếm: không có trang tìm kiếm nội bộ → searchable: false.
- * - Đọc bài: `h1.entry-title`; sapo `div.entry-sapo` hoặc `meta[property="og:description"]`; 
- *   thân `div.entry-content`; dừng ở `div-related` / `div.tags` / `footer`.
+ * Cấu trúc thực tế:
+ * - Danh sách: mỗi tin là `<div class="item-post-lg">` hoặc `<div class="item-post">`;
+ *   tiêu đề trong `<a class="title">`; ảnh `<img src>`; tag trong `<div class="tag-group">`.
+ * - Bài viết: `<h1 class="title">`, sapo `<div class="sapo">`, 
+ *   thân bài trong `<div class="mobile-body">` (chứa HTML lồng nhau).
+ * - URL dạng: /<category>/<slug>-<timestamp>.htm
  * - Toàn bộ hàm trả JSON string, ES5 thuần (Rhino).
  */
 
@@ -98,15 +98,16 @@ function emStrip(html) {
     var s = String(html === null || html === undefined ? "" : html)
         .replace(/<script[\s\S]*?<\/script>/gi, "")
         .replace(/<style[\s\S]*?<\/style>/gi, "")
-        .replace(/<br\s*\\?>/gi, "\n")
-        .replace(/<\/[p|div|li|h[1-6]|figure|figcaption]>/gi, "\n");
+        .replace(/<br\s*\/?>/gi, "\n")
+        .replace(/<\/[p|div|li|h[1-6]|figure|figcaption]>/gi, "\n")
+        .replace(/<[^>]*>/g, " ");
     s = emDecode(s);
     return s.replace(/[ \t]+/g, " ").replace(/\n\s*\n+/g, "\n").trim();
 }
 
 function emAbs(raw) {
     if (!raw) return null;
-    var link = emDecode(raw).replace(/&/g, "&").trim();
+    var link = emDecode(raw).trim();
     if (!link) return null;
     if (link.indexOf("http") === 0) return link;
     if (link.indexOf("//") === 0) return "https:" + link;
@@ -120,28 +121,26 @@ function emImgSrc(tag) {
         || /data-original="([^"]+)"/i.exec(tag)
         || /src="([^"]+)"/i.exec(tag);
     if (!m) return null;
-    var url = emDecode(m[1]).replace(/&/g, "&").trim();
+    var url = emDecode(m[1]).trim();
     if (!url || url.indexOf("data:") === 0) return null;
     if (url.indexOf("//") === 0) url = "https:" + url;
     if (url.indexOf("http") !== 0) return null;
     return url;
 }
 
-// Chỉ nhận link bài viết: /<slug>.htm, bỏ trang chủ, tag, etc.
+// Chỉ nhận link bài viết: /<category>/<slug>-<timestamp>.htm
 function emIsArticleLink(link) {
     if (!link) return false;
     var low = String(link).toLowerCase();
     if (low.indexOf(EM_HOST + "/") !== 0) return false;
     var path = low.substring(EM_HOST.length);
     if (path.indexOf("?") >= 0) return false;
-    // Chỉ nhận .htm và là bài viết (không phải tag, chuyên mục)
+    // Phải có dạng /<category>/<something>.htm và không phải tag page
+    if (path.indexOf("/tag/") !== -1) return false;
+    if (path.indexOf("/author/") !== -1) return false;
     if (!/\.htm$/i.test(path)) return false;
-    // Bỏ chuyên mục và tag pages
-    var nonArticles = ["tin-tuc.htm", "home.htm", "du-thi.htm", "sao-a.htm", "anh-hay-a.htm", "khoanh-khac-song-a.htm"];
-    for (var i = 0; i < nonArticles.length; i++) {
-        if (path === nonArticles[i]) return false;
-    }
-    // Bỏ các trang con khác nếu cần
+    // Bỏ trang chủ
+    if (path === "/" || path === "/index.htm" || path === "/home.htm") return false;
     return true;
 }
 
@@ -155,25 +154,22 @@ function emParseCard(part) {
     var href = null;
     var title = null;
     var imageUrl = null;
-    var excerpt = null;
 
-    // Tìm link và title
-    var am = /<a\b[^>]*class="[^"]*title[^"]*"[^>]*>([\s\S]*?)<\/a>/i.exec(part);
-    if (am) {
-        var hm = /href="([^"]+)"/i.exec(am[1]);
-        if (hm) href = hm[1];
-        var tm = /<h[1-6][^>]*>([\s\S]*?)<\/h[1-6]>/i.exec(am[2]);
-        title = emStrip(tm ? tm[1] : am[2]);
-        if (!title) {
-            var at = /title="([^"]+)"/i.exec(am[1]);
-            if (at) title = emStrip(at[1]);
-        }
+    // Tìm link và title từ <a class="title">
+    var titleM = /<a\b[^>]*href="([^"]+)"[^>]*class="[^"]*title[^"]*"[^>]*>([\s\S]*?)<\/a>/i.exec(part);
+    if (titleM) {
+        href = titleM[1];
+        title = emStrip(titleM[2]);
     }
+
+    // Fallback: link đầu tiên
     if (!href) {
-        var any = /<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/i.exec(part);
-        if (any) {
-            href = any[1];
-            title = emStrip(any[2]);
+        var linkM = /<a\b[^>]*href="([^"]+)"[^>]*class="[^"]*thumb[^"]*"[^>]*>([\s\S]*?)<\/a>/i.exec(part);
+        if (linkM) {
+            href = linkM[1];
+            if (!title) {
+                title = emStrip(linkM[2]);
+            }
         }
     }
 
@@ -181,8 +177,9 @@ function emParseCard(part) {
     if (!link || !emIsArticleLink(link)) return null;
 
     if (!title) {
-        var h2 = /<h[1-6][^>]*>([\s\S]*?)<\/h[1-6]>/i.exec(part);
-        if (h2) title = emStrip(h2[1]);
+        // Fallback từ title attribute
+        var titleAttr = /title="([^"]+)"/i.exec(part);
+        if (titleAttr) title = emStrip(titleAttr[1]);
     }
     if (!title) return null;
     title = title.replace(/\s+/g, " ").trim();
@@ -192,18 +189,10 @@ function emParseCard(part) {
     var imgTag = /<img\b[^>]*>/i.exec(part);
     imageUrl = imgTag ? emImgSrc(imgTag[0]) : null;
 
-    // Mô tả/excerpt
-    var emM = /<div[^>]*class="[^"]*sapo[^"]*"[^>]*>([\s\S]*?)<\/div>/i.exec(part)
-        || /<p[^>]*class="[^"]*description[^"]*"[^>]*>([\s\S]*?)<\/p>/i.exec(part);
-    if (emM) {
-        var txt = emStrip(emM[1]).replace(/\s+/g, " ").trim();
-        if (txt.length >= 10) excerpt = txt;
-    }
-
     return {
         title: title,
         link: link,
-        excerpt: excerpt,
+        excerpt: null,
         imageUrl: imageUrl,
         sourceName: EM_SOURCE_NAME
     };
@@ -211,50 +200,12 @@ function emParseCard(part) {
 
 function emParseCards(html) {
     if (!html) return "[]";
-    var source = emStrip(html).replace(/<!--[\s\S]*?-->/g, " ");
+    var source = String(html);
     var items = [];
     var seen = {};
 
-    // Thử parse như JSON API trước
-    var jsonStart = source.indexOf("{");
-    if (jsonStart >= 0) {
-        var jsonText = source.substring(jsonStart);
-        try {
-            var json = JSON.parse(jsonText);
-            if (json.data && json.data.contents) {
-                var list = json.data.contents;
-                for (var i = 0; i < list.length; i++) {
-                    var it = list[i];
-                    if (!it) continue;
-                    var link = emAbs(it.url);
-                    if (!link) continue;
-                    link = link.replace(/[?#].*$/, "");
-                    if (!/-post\d+\.html$/i.test(link)) continue;
-                    var title = emStrip(it.title).replace(/\s+/g, " ").trim();
-                    if (title.length < 5) continue;
-                    var excerpt = emStrip(it.description).replace(/\s+/g, " ").trim();
-                    if (excerpt && excerpt.length < 20) excerpt = null;
-                    var imageUrl = it.avatar_url ? emAbs(it.avatar_url) : null;
-                    var epoch = parseInt(it.date, 10);
-                    items.push({
-                        title: title,
-                        link: link,
-                        excerpt: excerpt,
-                        imageUrl: imageUrl,
-                        pubDate: epoch ? emDateLabel(epoch) : null,
-                        pubDateMs: epoch ? epoch * 1000 : 0,
-                        sourceName: EM_SOURCE_NAME
-                    });
-                }
-                return JSON.stringify(items);
-            }
-        } catch (e) {
-            // Fall through to HTML parsing
-        }
-    }
-
-    // Parse HTML
-    var parts = source.split('<article ');
+    // Tách theo item-post-lg hoặc item-post
+    var parts = source.split(/<div class="item-post-lg[^"]*">|<div class="item-post[^"]*">/i);
     for (var i = 1; i < parts.length; i++) {
         var part = parts[i];
         if (part.length > 6000) part = part.substring(0, 6000);
@@ -268,57 +219,12 @@ function emParseCards(html) {
     return JSON.stringify(items);
 }
 
-function emDateLabel(epochSec) {
-    var n = parseInt(epochSec, 10);
-    if (!n || isNaN(n)) return null;
-    var d = new Date(n * 1000 + 7 * 3600 * 1000);
-    var dd = d.getUTCDate(), mm = d.getUTCMonth() + 1, yy = d.getUTCFullYear();
-    var hh = d.getUTCHours(), mi = d.getUTCMinutes();
-    return (dd < 10 ? "0" + dd : "") + dd + "/" + (mm < 10 ? "0" + mm : "") + mm + "/" + yy +
-        " " + (hh < 10 ? "0" + hh : "") + hh + ":" + (mi < 10 ? "0" + mi : "") + mi;
-}
-
-function emQuery(url, name) {
-    var m = new RegExp("[?&]" + name + "=([^&]*)", "i").exec(String(url || ""));
-    return m ? m[1] : null;
-}
-
 // ----------------------------------------------------------------------
 // Phân trang
 // ----------------------------------------------------------------------
 
-function emGetNewsNextPageUrl(currentUrl, page, html) {
-    if (!page || page < 2) return null;
-    if (page > EM_MAX_PAGE) return null;
-
-    var source = String(html || "");
-    var pagerM = /<div class="pagination">[\s\S]*?<\/div>/i.exec(source);
-    if (!pagerM) return null; // trang chủ: không phân trang
-
-    var cur = page;
-    var cm = /[?&]page=(\d+)/i.exec(String(currentUrl || ""));
-    if (cm) cur = parseInt(cm[1], 10);
-
-    var bestHref = null;
-    var bestNum = 0;
-    var re = /<a\b[^>]*href="([^"]+)"[^>]*>/gi;
-    var m;
-    while ((m = re.exec(pagerM[1])) !== null) {
-        var href = m[1].replace(/&/g, "&");
-        var nm = /[?&]page=(\d+)/i.exec(href);
-        if (!nm) continue;
-        var n = parseInt(nm[1], 10);
-        if (n > cur && (bestHref === null || n < bestNum)) {
-            bestHref = href;
-            bestNum = n;
-        }
-    }
-    if (!bestHref) return null; // trang cuối
-    return emResolve(currentUrl, bestHref);
-}
-
 function emResolve(base, href) {
-    href = String(href || "").trim().replace(/&/g, "&");
+    href = String(href || "").trim();
     if (!href) return null;
     if (href.indexOf("http") === 0) return href;
     if (href.indexOf("//") === 0) return "https:" + href;
@@ -332,7 +238,37 @@ function emResolve(base, href) {
     return b + href;
 }
 
-function emGetNewsSearchUrl(query, page) {
+function getNewsNextPageUrl(currentUrl, page, html) {
+    if (!page || page < 2) return null;
+    if (page > EM_MAX_PAGE) return null;
+
+    var source = String(html || "");
+    // Tìm pagination
+    var pagerM = /<ul class="pagination[^"]*">[\s\S]*?<\/ul>/i.exec(source)
+        || /<div class="pagination[^"]*">[\s\S]*?<\/div>/i.exec(source);
+    if (!pagerM) return null;
+
+    var cur = page;
+    var cm = /[?&]page=(\d+)/i.exec(String(currentUrl || ""));
+    if (cm) cur = parseInt(cm[1], 10);
+
+    // Tìm link trang kế
+    var bestNum = 0;
+    var re = /href="([^"]*[?&]page=(\d+)[^"]*)"/gi;
+    var m;
+    while ((m = re.exec(pagerM[0])) !== null) {
+        var n = parseInt(m[2], 10);
+        if (n > cur && (bestNum === 0 || n < bestNum)) {
+            bestNum = n;
+        }
+    }
+    if (!bestNum || page > bestNum) return null;
+
+    var base = String(currentUrl).replace(/[?#].*$/, "");
+    return base + "?page=" + page;
+}
+
+function getNewsSearchUrl(query, page) {
     return null;
 }
 
@@ -340,73 +276,83 @@ function emGetNewsSearchUrl(query, page) {
 // Đọc bài
 // ----------------------------------------------------------------------
 
-var EM_BODY_START = [
-    'class="entry-content"',
-    'itemprop="articleBody"',
-    'class="article__body"'
-];
-
-var EM_BODY_END = [
-    'class="related"',
-    'class="tags"',
-    '<footer'
-];
-
 function emTitle(source) {
     var res = [
-        /<h1[^>]*class="[^"]*entry-title[^"]*"[^>]*>([\s\S]*?)<\/h1>/i,
+        /<h1[^>]*class="[^"]*title[^"]*"[^>]*>([\s\S]*?)<\/h1>/i,
         /<meta[^>]+property="og:title"[^>]+content="([^"]+)"/i,
-        /<h1[^>]*>([\s\S]*?)<\/h1>/i,
         /<title>([\s\S]*?)<\/title>/i
     ];
     for (var i = 0; i < res.length; i++) {
         var m = res[i].exec(source);
         if (!m) continue;
         var t = emStrip(m[1]).replace(/\s+/g, " ").trim();
-        if (t) return t.replace(/\s*-\s*EMDEP\.VN$/i, "");
+        if (t) return t;
     }
     return "";
 }
 
-// Vị trí bắt đầu thân bài
-function emFindBodyStart(source) {
-    for (var i = 0; i < EM_BODY_START.length; i++) {
-        var idx = source.indexOf(EM_BODY_START[i]);
-        if (idx < 0) continue;
-        var gt = source.indexOf(">", idx);
-        if (gt > 0) return gt + 1;
-    }
-    return -1;
-}
-
-function emCutBody(source, start) {
-    var end = source.length;
-    for (var e = 0; e < EM_BODY_END.length; e++) {
-        var endIdx = source.indexOf(EM_BODY_END[e], start);
-        if (endIdx >= 0 && endIdx < end) end = endIdx;
-    }
-    return source.substring(start, end);
+function emSapo(source) {
+    var m = /<div[^>]*class="[^"]*sapo[^"]*"[^>]*>([\s\S]*?)<\/div>/i.exec(source);
+    if (!m) return null;
+    // Lấy text từ div sapo, bỏ logo img
+    var t = emStrip(m[1]).replace(/\s+/g, " ").trim();
+    // Bỏ tiền tố logo nếu có
+    t = t.replace(/^-\s*/, "").trim();
+    return t.length >= 20 ? t : null;
 }
 
 function emScanBlocks(body) {
     var blocks = [];
-    var src = String(body).replace(/<figure\b[^>]*>[\\s\\S]*?<\/figure>/gi, function (tag) {
-        var imgTag = /<img\b[^>]*>/i.exec(tag);
-        var src = imgTag ? emImgSrc(imgTag[0]) : null;
-        var capM = /<figcaption[^>]*>([\s\S]*?)<\/figcaption>/i.exec(tag);
-        var caption = capM ? emStrip(capM[1]).replace(/\s+/g, " ").trim() : null;
-        if (src) {
-            blocks.push({ isImage: true, text: caption, imageUrl: emAbs(src), isVideo: false, videoUrl: null });
-        } else {
-            var vidM = /<(?:video|iframe)\b[^>]*src="([^"]+)"/i.exec(tag);
-            if (vidM) {
-                blocks.push({ isImage: false, text: caption, imageUrl: null, isVideo: true, videoUrl: emAbs(vidM[1]) });
+
+    // Xử lý các phần tử block
+    var src = String(body);
+
+    // Thay figure/video/iframe/table bằng marker
+    src = src.replace(/<figure\b[^>]*>[\s\S]*?<\/figure>|<video\b[^>]*>[\s\S]*?<\/video>|<iframe\b[^>]*>[\s\S]*?<\/iframe>|<table\b[^>]*>[\s\S]*?<\/table>/gi, function (tag) {
+        var lower = tag.toLowerCase();
+        var b = null;
+
+        if (lower.indexOf("<figure") === 0) {
+            var imgTag = /<img\b[^>]*>/i.exec(tag);
+            var imgSrc = imgTag ? emImgSrc(imgTag[0]) : null;
+            var capM = /<figcaption[^>]*>([\s\S]*?)<\/figcaption>/i.exec(tag);
+            var caption = capM ? emStrip(capM[1]).replace(/\s+/g, " ").trim() : null;
+            if (imgSrc) {
+                b = { isImage: true, text: caption, imageUrl: emAbs(imgSrc), isVideo: false, videoUrl: null };
+            } else {
+                var vidM = /<(?:video|iframe)\b[^>]*src="([^"]+)"/i.exec(tag);
+                if (vidM) {
+                    b = { isImage: false, text: caption, imageUrl: null, isVideo: true, videoUrl: emAbs(vidM[1]) };
+                }
+            }
+        } else if (lower.indexOf("<video") === 0 || lower.indexOf("<iframe") === 0) {
+            var vM = /src="([^"]+)"/i.exec(tag);
+            if (vM && vM[1].indexOf("about:blank") < 0) {
+                b = { isImage: false, text: null, imageUrl: null, isVideo: true, videoUrl: emAbs(vM[1]) };
+            }
+        } else if (lower.indexOf("<table") === 0) {
+            var rows = tag.match(/<tr\b[^>]*>[\s\S]*?<\/tr>/gi) || [];
+            var lines = [];
+            for (var r = 0; r < rows.length; r++) {
+                var cells = rows[r].match(/<t[dh]\b[^>]*>[\s\S]*?<\/t[dh]>/gi) || [];
+                var parts = [];
+                for (var c = 0; c < cells.length; c++) parts.push(emStrip(cells[c]));
+                var line = parts.join(" | ").replace(/\s+/g, " ").trim();
+                if (line) lines.push(line);
+            }
+            var tableText = lines.join("\n");
+            if (tableText.length >= 20) {
+                b = { isImage: false, text: tableText, imageUrl: null, isVideo: false, videoUrl: null };
             }
         }
+
+        if (!b) return " ";
+        blocks.push(b);
         return "\u0001" + (blocks.length - 1) + "\u0002";
     });
 
-    src = src.replace(/<br\s*\\?>/gi, "\n")
+    // Chuyển đổi các thẻ còn lại thành text
+    src = src.replace(/<br\s*\/?>/gi, "\n")
         .replace(/<p\b[^>]*>/gi, "\n\n")
         .replace(/<\/p>/gi, "\n\n")
         .replace(/<div\b[^>]*>/gi, "\n\n")
@@ -416,6 +362,7 @@ function emScanBlocks(body) {
         .replace(/\n[ \t]+/g, "\n")
         .replace(/\n{2,}/g, "\n\n");
 
+    // Ghép lại text và blocks
     var out = [];
     var re = /\u0001(\d+)\u0002/g;
     var last = 0;
@@ -430,15 +377,11 @@ function emScanBlocks(body) {
         }
         var idx = parseInt(m[1], 10);
         if (!isNaN(idx) && blocks[idx]) {
-            var b = blocks[idx];
-            var bbParts = b.text ? [b.text] : [];
-            for (var j = 0; j < bbParts.length; j++) {
-                out.push({ isImage: b.isImage, text: bbParts[j], imageUrl: b.imageUrl, isVideo: b.isVideo, videoUrl: b.videoUrl });
-            }
+            out.push(blocks[idx]);
         }
         last = re.lastIndex;
     }
-    // Xử phần còn lại
+    // Phần còn lại
     var chunk = src.substring(last);
     var parts = chunk.split(/\n{2,}/);
     for (var i = 0; i < parts.length; i++) {
@@ -449,36 +392,6 @@ function emScanBlocks(body) {
     return out;
 }
 
-function emSapo(source) {
-    var m = /<div[^>]*class="[^"]*entry-sapo[^"]*"[^>]*>([\s\S]*?)<\/div>/i.exec(source);
-    if (!m) return null;
-    var t = emStrip(m[1]).replace(/\s+/g, " ").trim();
-    return t.length >= 20 ? t : null;
-}
-
-function emRelated(source, selfLink) {
-    var items = [];
-    var seen = {};
-    var chunks = [];
-    var marks = ['class="related"', 'class="tags"'];
-    for (var i = 0; i < marks.length; i++) {
-        var idx = source.indexOf(marks[i]);
-        if (idx >= 0) chunks.push(source.substring(idx, idx + 50000));
-    }
-    var self = String(selfLink || "").replace(/[?#].*$/, "");
-    for (var c = 0; c < chunks.length; c++) {
-        var more = emParseCards(chunks[c]);
-        for (var j = 0; j < more.length; j++) {
-            var it = more[j];
-            if (it.link === self || seen[it.link]) continue;
-            seen[it.link] = true;
-            items.push(it);
-            if (items.length >= 12) return items;
-        }
-    }
-    return items;
-}
-
 function parseNewsArticle(html, url) {
     if (!html) return null;
     var source = String(html);
@@ -486,44 +399,97 @@ function parseNewsArticle(html, url) {
     // Trang challenge/không có nội dung
     if (source.length < 3000) return null;
 
-    var start = -1;
-    var startMark = "";
-    for (var i = 0; i < EM_BODY_START.length; i++) {
-        var idx = source.indexOf(EM_BODY_START[i]);
-        if (idx >= 0 && (start < 0 || idx < start)) {
-            start = idx;
-            startMark = EM_BODY_START[i];
+    var title = emTitle(source);
+    if (!title) return null;
+
+    var blocks = [];
+
+    // Sapo
+    var sapo = emSapo(source);
+    if (sapo) {
+        blocks.push({ isImage: false, text: sapo, imageUrl: null, isVideo: false, videoUrl: null });
+    }
+
+    // Thân bài: tìm <div class="mobile-body">
+    var bodyStart = source.indexOf('class="mobile-body"');
+    if (bodyStart >= 0) {
+        var gt = source.indexOf(">", bodyStart);
+        if (gt > 0) {
+            var body = source.substring(gt + 1);
+            // Tìm kết thúc - dừng ở </section> hoặc footer
+            var endIdx = body.search(/<\/section>|<footer|<div class="bg-white py-2">(?!.*mobile-body)/i);
+            if (endIdx > 0) body = body.substring(0, endIdx);
+
+            // Strip HTML lồng nhau nếu có
+            body = body.replace(/<!DOCTYPE[^>]*>/gi, "")
+                .replace(/<html[^>]*>/gi, "")
+                .replace(/<\/html>/gi, "")
+                .replace(/<head[^>]*>[\s\S]*?<\/head>/gi, "")
+                .replace(/<body[^>]*>/gi, "")
+                .replace(/<\/body>/gi, "");
+
+            var bodyBlocks = emScanBlocks(body);
+            for (var i = 0; i < bodyBlocks.length; i++) {
+                blocks.push(bodyBlocks[i]);
+            }
         }
     }
-    if (start < 0) return null;
 
-    var gt = source.indexOf(">", start);
-    if (gt < 0) return null;
+    // Nếu không có mobile-body, thử section.content
+    if (blocks.length === 0 || (!sapo && blocks.length <= 1)) {
+        var sectionStart = source.indexOf('<section class="content"');
+        if (sectionStart >= 0) {
+            var gt2 = source.indexOf(">", sectionStart);
+            if (gt2 > 0) {
+                var section = source.substring(gt2 + 1);
+                var endSec = section.indexOf("</section>");
+                if (endSec > 0) section = section.substring(0, endSec);
 
-    var body = source.substring(gt + 1);
-    var end = body.length;
-    for (var e = 0; e < EM_BODY_END.length; e++) {
-        var endIdx = body.indexOf(EM_BODY_END[e]);
-        if (endIdx >= 0 && endIdx < end) end = endIdx;
+                // Bỏ qua phần header (title + summary)
+                var bodyStart2 = section.indexOf('class="mobile-body"');
+                if (bodyStart2 >= 0) {
+                    var gt3 = section.indexOf(">", bodyStart2);
+                    if (gt3 > 0) {
+                        var body2 = section.substring(gt3 + 1);
+                        body2 = body2.replace(/<!DOCTYPE[^>]*>/gi, "")
+                            .replace(/<html[^>]*>/gi, "")
+                            .replace(/<\/html>/gi, "")
+                            .replace(/<head[^>]*>[\s\S]*?<\/head>/gi, "")
+                            .replace(/<body[^>]*>/gi, "")
+                            .replace(/<\/body>/gi, "");
+
+                        var bodyBlocks2 = emScanBlocks(body2);
+                        // Thêm vào sau sapo (nếu có) hoặc đầu blocks
+                        var insertIdx = sapo ? 1 : 0;
+                        for (var i = bodyBlocks2.length - 1; i >= 0; i--) {
+                            blocks.splice(insertIdx, 0, bodyBlocks2[i]);
+                        }
+                    }
+                }
+            }
+        }
     }
-    body = body.substring(0, end);
-    body = emStrip(body).replace(/<!--[\s\S]*?-->/g, " ");
 
-    var blocks = emScanBlocks(body);
-
-    // Sapo nằm ngoài thân bài
-    if (startMark !== 'class="entry-content"') {
-        var sapo = emSapo(source);
-        if (sapo) blocks.unshift({ isImage: false, text: sapo, imageUrl: null, isVideo: false, videoUrl: null });
+    // Lọc trùng lặp blocks
+    var finalBlocks = [];
+    var seenText = {};
+    for (var i = 0; i < blocks.length; i++) {
+        var b = blocks[i];
+        if (b.isImage || b.isVideo) {
+            finalBlocks.push(b);
+            continue;
+        }
+        var key = b.text ? b.text.substring(0, 100) : "";
+        if (!key || seenText[key]) continue;
+        seenText[key] = true;
+        finalBlocks.push(b);
     }
 
-    var title = emTitle(source);
-    if (!title && blocks.length === 0) return null;
-    if (blocks.length === 0) return null;
+    if (finalBlocks.length === 0) return null;
 
     return JSON.stringify({
         title: title,
-        blocks: blocks,
-        related: emRelated(source, url)
+        blocks: finalBlocks,
+        related: []
     });
 }
