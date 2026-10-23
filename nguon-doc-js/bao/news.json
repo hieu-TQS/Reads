@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "name": "Nguồn báo",
-  "updated": "2026-10-22",
+  "updated": "2026-10-23",
   "sources": [
     {
       "id": "tienphong",
@@ -14,7 +14,7 @@
     },
     {
       "id": "kenh14",
-      "name": "Kenh14",
+      "name": "Kênh 14",
       "version": "1.0.0",
       "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/kenh14.js",
       "iconUrl": "https://www.google.com/s2/favicons?domain=kenh14.vn&sz=64",
@@ -77,7 +77,7 @@
     },
     {
       "id": "khoahoctv",
-      "name": "KhoaHoc.tv",
+      "name": " Báo Khoa học",
       "version": "1.0.0",
       "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/khoahoctv.js",
       "iconUrl": "https://www.google.com/s2/favicons?domain=khoahoc.tv&sz=64",
@@ -102,6 +102,132 @@
       "iconUrl": "https://www.google.com/s2/favicons?domain=vietnamnet.vn&sz=64",
       "author": "hieu-TQS",
       "description": "VietNamNet: thời sự, kinh doanh, giáo dục, thế giới, đời sống, công nghệ, thể thao, tìm kiếm và đọc bài."
+    },
+    {
+      "id": "vneconomy",
+      "name": "VnEconomy",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/vneconomy.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=vneconomy.vn&sz=64",
+      "author": "hieu-TQS",
+      "description": "VnEconomy: kinh tế, chứng khoán, tài chính, địa ốc, kinh tế thế giới; tìm kiếm và đọc bài đầy đủ."
+    },
+    {
+      "id": "eva",
+      "name": "Eva",
+      "version": "1.0.1",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/eva.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=eva.vn&sz=64",
+      "author": "hieu-TQS",
+      "description": "Eva.vn: tin tức giải trí, sức khỏe, làm đẹp, đời sống dành cho phụ nữ; 20 chuyên mục, đọc bài đầy đủ (kèm tin liên quan)."
+    },
+    {
+      "id": "thethaovanhoa",
+      "name": "Thể thao & Văn hóa",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/thethaovanhoa.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=thethaovanhoa.vn&sz=64",
+      "author": "hieu-TQS",
+      "description": "Báo Thể thao & Văn hóa (TTXVN): thể thao, bóng đá, văn hóa, giải trí, hightech; chuyên mục, tìm kiếm và đọc bài đầy đủ."
+    },
+    {
+      "id": "qdnd",
+      "name": "Quân đội nhân dân",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/qdnd.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=qdnd.vn&sz=64",
+      "author": "hieu-TQS",
+      "description": "Báo Quân đội nhân dân: chính trị, quốc phòng - an ninh, kinh tế, xã hội, văn hóa, quốc tế, thể thao; chuyên mục và đọc bài đầy đủ."
+    },
+    {
+      "id": "tuoitre",
+      "name": "Tuổi Trẻ",
+      "version": "1.0.2",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/tuoitre.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=tuoitre.vn&sz=64",
+      "author": "hieu-TQS",
+      "description": "Báo Tuổi Trẻ Online: 19 chuyên mục, mỗi chuyên mục 50 tin mới nhất (RSS), đọc bài đầy đủ kèm ảnh chú thích và tin liên quan."
+    },
+    {
+      "id": "hanoimoi",
+      "name": "Hà Nội Mới",
+      "version": "1.0.1",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/hanoimoi.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=hanoimoi.vn&sz=64",
+      "author": "hieu-TQS",
+      "description": "Báo Hà Nội Mới: thời sự, chính trị, kinh tế, văn hóa, xã hội, thế giới."
+    },
+    {
+      "id": "nhandan",
+      "name": "Nhân Dân",
+      "version": "1.0.1",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/nhandan.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=nhandan.vn&sz=64",
+      "author": "hieu-TQS",
+      "description": "Báo Nhân Dân: 12 chuyên mục, tìm kiếm qua API, phân trang bằng API Xem thêm và đọc bài đầy đủ."
+    },
+    {
+      "id": "laodong",
+      "name": "Lao Động",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/laodong.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=laodong.vn&sz=64",
+      "author": "hieu-TQS",
+      "description": "Báo Lao Động: thời sự, pháp luật, kinh doanh, công đoàn, thể thao, văn hóa, giáo dục, sức khỏe, công nghệ; chuyên mục, phân trang và đọc bài đầy đủ."
+    },
+    {
+      "id": "soha",
+      "name": "SOHA",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/soha.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=soha.vn&sz=64",
+      "author": "hieu-TQS",
+      "description": "Báo SOHA: thời sự - xã hội, kinh doanh, bất động sản, quốc tế, thể thao, giải trí, pháp luật, sống khỏe, công nghệ, đời sống; 22 chuyên mục, tìm kiếm, phân trang và đọc bài đầy đủ."
+    },
+    {
+      "id": "sggp",
+      "name": "Sài Gòn Giải Phóng",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/sggp.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=sggp.org.vn&sz=64",
+      "author": "hieu-TQS",
+      "description": "Báo Sài Gòn Giải Phóng: chính trị, xã hội, pháp luật, kinh tế, thế giới, giáo dục, sức khỏe, văn hóa, lao động - an sinh, phụ nữ; chuyên mục, tìm kiếm, tải thêm qua API và đọc bài đầy đủ."
+    },
+    {
+      "id": "znews",
+      "name": "Znews",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/znews.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=znews.vn&sz=64",
+      "author": "hieu-TQS",
+      "description": "Znews: thời sự, chính trị, kinh tế, xã hội, thế giới, thể thao, giải trí, du lịch, sức khỏe, công nghệ, đời sống."
+    },
+    {
+      "id": "gamek",
+      "name": "GameK",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/gamek.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=gamek.vn&sz=64",
+      "author": "hieu-TQS",
+      "description": "GameK: game online, game mobile, eSports, PC/Console, khám phá, manga - film, gaming gear, thị trường game."
+    },
+    {
+      "id": "cuoi",
+      "name": "Tuổi Trẻ Cười",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/cuoi.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=cuoi.tuoitre.vn&sz=64",
+      "author": "hieu-TQS",
+      "description": "Tuổi Trẻ Cười: báo biếm họa, trào phúng, giải trí, thể thao cười, showbiz, đời sống vui."
+    },
+    {
+      "id": "emdep",
+      "name": "Emdep",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/news/emdep.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=emdep.vn&sz=64",
+      "author": "hieu-TQS",
+      "description": "Báo Emdep: tin tức phụ nữ, gia đình, làm đẹp, ăn ngon, sống đẹp, giới tính."
     }
   ]
 }
