@@ -106,6 +106,21 @@ function TF_match(s, re) {
     return m ? m : null;
 }
 
+/* Trang Cloudflare "Just a moment..." (403) — app không chạy JS nên không vượt được. */
+function TF_isChallenge(s) {
+    return s.indexOf("challenge-platform") >= 0 || /<title>\s*Just a moment/i.test(s);
+}
+
+/* Bỏ phần tử ẩn — site nhồi keyword SEO bằng <p style="display:none">. */
+function TF_dropHidden(s) {
+    return String(s == null ? "" : s).replace(
+        /<(\w+)[^>]*(?:display\s*:\s*none|visibility\s*:\s*hidden)[^>]*>[\s\S]*?<\/\1>/gi, " ");
+}
+
+function TF_isSeoJunk(t) {
+    return /^[\s,.\-|]*(?:truyen\s*full(?:vn|live)?[\s,.\-|]*)+$/i.test(t);
+}
+
 /* ---------- Source ---------- */
 
 function getNovelSource() {
@@ -164,6 +179,9 @@ function parseNovelList(html, url) {
         if (!linkM) continue;
         var link = TF_abs(linkM[1]);
         if (seen[link]) continue;
+        // Truyện "AI free" (slug ...-free) bị Cloudflare chặn 403 với mọi request
+        // không chạy JS → app không bao giờ mở được, ẩn khỏi danh sách.
+        if (/-free\/?$/i.test(link)) continue;
         seen[link] = 1;
 
         var title = "";
@@ -213,6 +231,12 @@ function getNovelNextPageUrl(currentUrl, page, html) {
 
 function parseNovelDetail(html, url) {
     var s = String(html == null ? "" : html);
+    if (TF_isChallenge(s)) {
+        return JSON.stringify({
+            title: "", coverUrl: null, author: null, description: null,
+            status: null, genres: null, chapters: [], chapterPages: []
+        });
+    }
     var titleM = /<h3 class="title"[^>]*>([\s\S]*?)<\/h3>/i.exec(s);
     var title = titleM ? TF_text(titleM[1]) : "";
     if (!title) {
@@ -321,13 +345,27 @@ function parseNovelChapters(html) {
 
 function parseNovelChapter(html, url) {
     var s = String(html == null ? "" : html);
+    if (TF_isChallenge(s)) {
+        return JSON.stringify({ title: "", paragraphs: [], prevLink: "", nextLink: "" });
+    }
 
     var titleM = /<h2[^>]*class="truyen-title"[^>]*>([\s\S]*?)<\/h2>/i.exec(s);
-    if (!titleM) titleM = /<h1[^>]*>([\s\S]*?)<\/h1>/i.exec(s);
     var title = titleM ? TF_text(titleM[1]) : "";
+    if (!title) {
+        // Trang chương chỉ có tên chương trong <title>: "Truyện : Chương N: … - Truyenfull.vn"
+        var tM = /<title>([\s\S]*?)<\/title>/i.exec(s);
+        if (tM) {
+            title = TF_text(tM[1]).replace(/\s*[-|]\s*Truyenfull\.[a-z]+\s*$/i, "");
+            var sep = title.lastIndexOf(" : ");
+            if (sep >= 0) title = title.substring(sep + 3);
+        }
+    }
+    if (!title) {
+        var h1M = /<h1[^>]*>([\s\S]*?)<\/h1>/i.exec(s);
+        if (h1M) title = TF_text(h1M[1]);
+    }
 
     // content block
-    var paragraphs = [];
     var startIdx = s.indexOf('id="chapter-c"');
     var endIdx = s.indexOf('id="chapter-nav-bot"');
     var block = "";
@@ -338,19 +376,15 @@ function parseNovelChapter(html, url) {
             block = s.substring(from + 1, to);
         }
     }
-    var pRe = /<p[^>]*>([\s\S]*?)<\/p>/gi;
-    var pm;
-    while ((pm = pRe.exec(block)) !== null) {
-        var t = TF_text(pm[1]);
-        if (t) paragraphs.push(t);
-    }
-    if (paragraphs.length === 0) {
-        var raw = TF_text(block);
-        var parts = raw.split(/\n+/);
-        for (var i = 0; i < parts.length; i++) {
-            var tt = TF_trim(parts[i]);
-            if (tt) paragraphs.push(tt);
-        }
+    block = TF_dropHidden(block);
+    // Có 2 kiểu markup: <p>…</p> (truyện cũ) và ngăn cách bằng <br><br> (truyện mới).
+    // TF_text đã đổi cả </p> lẫn <br> thành "\n" nên tách theo xuống dòng là đủ cho cả 2.
+    var paragraphs = [];
+    var raw = TF_text(block);
+    var parts = raw.split(/\n+/);
+    for (var i = 0; i < parts.length; i++) {
+        var tt = TF_trim(parts[i]);
+        if (tt && !TF_isSeoJunk(tt)) paragraphs.push(tt);
     }
 
     // prev / next

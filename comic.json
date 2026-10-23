@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "name": "Nguồn truyện tranh",
-  "updated": "2026-10-22",
+  "updated": "2026-10-23",
   "sources": [
     {
       "id": "truyenqq",
@@ -45,7 +45,7 @@
     {
       "id": "sangchanhteam",
       "name": "Sang Chảnh Team",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/comic/sangchanhteam.js",
       "iconUrl": "https://www.google.com/s2/favicons?domain=sangchanhteam.com&sz=64",
       "author": "hieu-TQS",
@@ -54,11 +54,50 @@
     {
       "id": "mangatooncom",
       "name": "MangaToon",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/comic/mangatooncom.js",
       "iconUrl": "https://www.google.com/s2/favicons?domain=mangatooncom.vn&sz=64",
       "author": "hieu-TQS",
       "description": "MangaToon: truyện tranh cập nhật, đọc miễn phí."
+    },
+    {
+      "id": "thegioitruyen",
+      "name": "Thế Giới Truyện",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/comic/thegioitruyen.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=thegioitruyen.vn&sz=64",
+      "author": "hieu-TQS",
+      "description": "Thế Giới Truyện: truyện tranh cập nhật nhanh, nhiều thể loại, đọc chapter dạng ảnh."
+    },
+    {
+      "id": "vcomycs",
+      "name": "Vcomycs",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/comic/vcomycs.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=vcomycs.cc&sz=64",
+      "author": "hieu-TQS",
+      "description": "Vcomycs: kho truyện tranh manga/manhwa/manhua, danh sách mới, thể loại, tìm kiếm và đọc chương dạng ảnh."
+    },
+    {
+      "id": "teletruyen",
+      "name": "TeleTruyen",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/comic/teletruyen.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=teletruyen.com&sz=64",
+      "author": "hieu-TQS",
+      "description": "TeleTruyen: kho truyện tranh/webtoon cập nhật nhanh, nhiều thể loại, đọc chapter dạng ảnh.",
+      "password": "16+"
+    },
+
+    {
+      "id": "damconuong",
+      "name": "Dâm Cô Nương",
+      "version": "1.0.1",
+      "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/Reads/main/sources/comic/damconuong.js",
+      "iconUrl": "https://www.google.com/s2/favicons?domain=damconuong.win&sz=64",
+      "author": "hieu-TQS",
+      "description": "Dâm Cô Nương: truyện tranh 18+ manhwa/hentai, nhiều thể loại, tìm kiếm, đọc chương dạng ảnh.",
+      "password": "18+"
     }
   ]
 }

@@ -78,18 +78,33 @@ function parseNewsList(html, url) {
     var items = [];
     var seen = {};
     var re = /<a[^>]*href="([^"]+\.html)"[^>]*title="([^"]+)"[^>]*>/gi;
-    var m;
-    while ((m = re.exec(source)) !== null) {
+    var matches = [];
+    var mm;
+    while ((mm = re.exec(source)) !== null) matches.push(mm);
+    for (var i = 0; i < matches.length; i++) {
+        var m = matches[i];
         var link = vnAbs(m[1]);
         var title = vnDecode(m[2]).trim();
         if (!link || seen[link]) continue;
         seen[link] = true;
         if (title.length < 5) continue;
+        var start = m.index + m[0].length;
+        var end = (i + 1 < matches.length) ? matches[i + 1].index : Math.min(source.length, start + 2000);
+        var windowText = source.substring(start, end);
+        var imageUrl = null;
+        var sm = windowText.match(/srcset="([^"]+)"/i);
+        if (sm) {
+            imageUrl = sm[1].split(",")[0].trim().split(" ")[0];
+        } else {
+            var im = windowText.match(/<img[^>]*src="([^"]+)"/i);
+            if (im && im[1].indexOf("data:image") !== 0) imageUrl = im[1];
+        }
+        if (imageUrl) imageUrl = vnAbs(imageUrl);
         items.push({
             title: title,
             link: link,
             excerpt: null,
-            imageUrl: null,
+            imageUrl: imageUrl,
             pubDate: null,
             pubDateMs: 0,
             sourceName: VN_SOURCE_NAME
